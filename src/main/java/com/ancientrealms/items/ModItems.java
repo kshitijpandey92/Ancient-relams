@@ -2,6 +2,7 @@ package com.ancientrealms.items;
 
 import com.ancientrealms.registry.Registrar;
 import com.ancientrealms.blocks.StationBlocks;
+import com.ancientrealms.blocks.ModBlocks;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -72,6 +73,7 @@ public final class ModItems {
                 output.accept(WORLD_CORE);
                 output.accept(DRAGON_SADDLE);
                 output.accept(DRAGON_EGG);
+                output.accept(ModBlocks.DRAGON_EGG_NEST);
                 output.accept(KINGDOM_SIGIL);
                 output.accept(DRAGON_TREAT);
                 output.accept(StationBlocks.DRAGON_FORGE);
