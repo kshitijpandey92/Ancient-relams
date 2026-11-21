@@ -59,6 +59,12 @@ public class DragonEntity extends PathfinderMob {
    player.sendSystemMessage(net.minecraft.network.chat.Component.literal("The dragon has bonded with you!"));
    return InteractionResult.SUCCESS;
   }
+  if (!level().isClientSide() && bondedPlayer != null && bondedPlayer.equals(player.getUUID()) && held.is(ModItems.DRAGON_TREAT) && getHealth() < getMaxHealth()) {
+   heal(12.0F);
+   if (!player.getAbilities().instabuild) held.shrink(1);
+   player.sendSystemMessage(net.minecraft.network.chat.Component.literal("Your dragon enjoyed the treat and recovered health."));
+   return InteractionResult.SUCCESS;
+  }
   if (!level().isClientSide() && bondedPlayer != null && bondedPlayer.equals(player.getUUID()) && !saddled && held.is(ModItems.DRAGON_SADDLE)) {
    saddled = true;
    if (!player.getAbilities().instabuild) held.shrink(1);
