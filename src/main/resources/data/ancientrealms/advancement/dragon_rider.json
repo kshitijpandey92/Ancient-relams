@@ -1,0 +1,50 @@
+{
+  "display": {
+    "icon": {
+      "id": "ancientrealms:dragon_saddle"
+    },
+    "title": {
+      "translate": "advancements.ancientrealms.dragon_rider.title"
+    },
+    "description": {
+      "translate": "advancements.ancientrealms.dragon_rider.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "ride_ember": {
+      "trigger": "minecraft:started_riding",
+      "conditions": {
+        "entity": {
+          "type": "ancientrealms:ember_dragon"
+        }
+      }
+    },
+    "ride_frost": {
+      "trigger": "minecraft:started_riding",
+      "conditions": {
+        "entity": {
+          "type": "ancientrealms:frost_dragon"
+        }
+      }
+    },
+    "ride_storm": {
+      "trigger": "minecraft:started_riding",
+      "conditions": {
+        "entity": {
+          "type": "ancientrealms:storm_dragon"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "ride_ember",
+      "ride_frost",
+      "ride_storm"
+    ]
+  ]
+}
