@@ -21,6 +21,7 @@ import net.minecraft.world.level.Level;
 public class DragonEntity extends PathfinderMob {
  private int elementalCooldown = 0;
  private boolean saddled = false;
+ private java.util.UUID bondedPlayer = null;
 
  public DragonEntity(EntityType<? extends DragonEntity> type, Level level) {
   super(type, level);
@@ -44,12 +45,19 @@ public class DragonEntity extends PathfinderMob {
   goalSelector.addGoal(3,new LookAtPlayerGoal(this,Player.class,32.0F));
   goalSelector.addGoal(4,new RandomLookAroundGoal(this));
   targetSelector.addGoal(1,new HurtByTargetGoal(this));
-  targetSelector.addGoal(2,new NearestAttackableTargetGoal<>(this,Player.class,true));
+  targetSelector.addGoal(2,new NearestAttackableTargetGoal<>(this,Player.class,10,true,false, player -> bondedPlayer == null || !player.getUUID().equals(bondedPlayer)));
  }
 
  @Override public InteractionResult mobInteract(Player player, InteractionHand hand) {
   var held = player.getItemInHand(hand);
-  if (!level().isClientSide() && !saddled && held.is(ModItems.DRAGON_SADDLE)) {
+  if (!level().isClientSide() && bondedPlayer == null && held.is(ModItems.DRAGON_HEART)) {
+   bondedPlayer = player.getUUID();
+   if (!player.getAbilities().instabuild) held.shrink(1);
+   setTarget(null);
+   player.sendSystemMessage(net.minecraft.network.chat.Component.literal("The dragon has bonded with you!"));
+   return InteractionResult.SUCCESS;
+  }
+  if (!level().isClientSide() && bondedPlayer != null && bondedPlayer.equals(player.getUUID()) && !saddled && held.is(ModItems.DRAGON_SADDLE)) {
    saddled = true;
    if (!player.getAbilities().instabuild) held.shrink(1);
    setTarget(null);
