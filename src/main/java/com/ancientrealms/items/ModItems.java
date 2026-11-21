@@ -16,6 +16,9 @@ import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 public final class ModItems {
     public static final Item MYTHRIL_INGOT = Registrar.item("mythril_ingot", Item::new);
     public static final Item MYTHRIL_SWORD = Registrar.item("mythril_sword", Item::new);
+    public static final Item ADAMANTITE_SWORD = Registrar.item("adamantite_sword", Item::new);
+    public static final Item DRAGONSTEEL_SWORD = Registrar.item("dragonsteel_sword", Item::new);
+    public static final Item CELESTIAL_GOLD_SWORD = Registrar.item("celestial_gold_sword", Item::new);
     public static final Item ADAMANTITE_INGOT = Registrar.item("adamantite_ingot", Item::new);
     public static final Item DRAGONSTEEL_INGOT = Registrar.item("dragonsteel_ingot", Item::new);
     public static final Item SOULSTONE = Registrar.item("soulstone", Item::new);
@@ -43,6 +46,9 @@ public final class ModItems {
             .displayItems((parameters, output) -> {
                 output.accept(MYTHRIL_INGOT);
                 output.accept(MYTHRIL_SWORD);
+                output.accept(ADAMANTITE_SWORD);
+                output.accept(DRAGONSTEEL_SWORD);
+                output.accept(CELESTIAL_GOLD_SWORD);
                 output.accept(ADAMANTITE_INGOT);
                 output.accept(DRAGONSTEEL_INGOT);
                 output.accept(SOULSTONE);
