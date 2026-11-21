@@ -55,5 +55,7 @@
   "advancements.ancientrealms.dragon_bond.title": "A Dragon's Trust",
   "advancements.ancientrealms.dragon_bond.description": "Earn a dragon's trust with a Dragon Treat.",
   "advancements.ancientrealms.kingdom_founder.title": "A Realm of Your Own",
-  "advancements.ancientrealms.kingdom_founder.description": "Craft the sigil of an Ancient Realms kingdom."
+  "advancements.ancientrealms.kingdom_founder.description": "Craft the sigil of an Ancient Realms kingdom.",
+  "item.ancientrealms.frost_dragon_egg": "Frost Dragon Egg",
+  "item.ancientrealms.storm_dragon_egg": "Storm Dragon Egg"
 }

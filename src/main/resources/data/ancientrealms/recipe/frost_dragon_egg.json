@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " C ",
+    " E ",
+    " C "
+  ],
+  "key": {
+    "C": "ancientrealms:frost_core",
+    "E": "ancientrealms:dragon_egg"
+  },
+  "result": {
+    "id": "ancientrealms:frost_dragon_egg",
+    "count": 1
+  }
+}
