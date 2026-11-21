@@ -13,7 +13,7 @@
 - Gradle/Fabric Loom project, Java 25 and GitHub Actions build workflow.
 - Main/client entrypoints, JSON configuration, item/block registration and a dedicated creative tab.
 - Progression materials, four sword tiers and seven overworld ore types with world-generation data.
-- Natural dragon egg nests are now registered as a rare overworld world-generation feature; generated nests use the Ember species default and follow the existing incubation/hatching lifecycle.
+- Rare natural Ember, Frost and Storm dragon egg nests are registered as overworld world-generation features; generated nests preserve their elemental species and follow the existing incubation/hatching lifecycle.
 - Three hostile dragon species with registered attributes, melee AI, custom multipart 3D models, animated wings/tails/legs and elemental combat strikes.
 - Dragon interaction loop: craft Dragon Treat, bond with a wild dragon, feed treats to restore 12 health, apply a Dragon Saddle and mount it as a passenger.
 - Placeable dragon egg items and an incubating nest block with Ember, Frost and Storm species selection; elemental egg crafting recipes; kingdom sigil and Dragon Treat items, recipes, models and progression advancements.
