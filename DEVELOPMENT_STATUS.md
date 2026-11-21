@@ -28,9 +28,9 @@
 ## Not complete yet
 - [ ] Original custom PNG textures and mod icon. Ore blocks currently reuse vanilla textures; item models reference missing custom textures.
 - [ ] Natural ore world generation and biome placement.
-- [ ] Eight functional crafting stations with block entities, menus/screens, server-side recipe processing, and station-specific progression gates.
+- [x] Eight themed workstation blocks with a working vanilla 3x3 crafting-table interface. Custom station-specific menus, processing, and progression gates remain outstanding.
 - [ ] Full tier equipment sets, tools, armor, and complete progression/advancement tree.
-- [ ] Dragon entities, dragon growth/AI, kingdom systems, and world events.
+- [x] Three registered hostile dragon species with custom multipart 3D models, animated wings/tails/legs, separate textures, attributes, and AI. Flight, breath weapons, taming, growth stages, nests, dragon drops, kingdom systems, and world events remain outstanding.
 - [ ] In-game client/server testing and save/load verification.
 
 This is an active development build, not yet the complete playable mod described in the master specification. Do not treat unchecked items as implemented.

@@ -16,5 +16,6 @@ public final class ModBlocks {
 
     public static void initialize() {
         // Static fields register all seven ore blocks and their matching block items.
+        StationBlocks.initialize();
     }
 }

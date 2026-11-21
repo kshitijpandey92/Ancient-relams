@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CraftingTableBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import java.util.function.Function;
 public final class Registrar {
@@ -26,6 +27,16 @@ public final class Registrar {
   ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, id);
   BlockItem blockItem = new BlockItem(block, new Item.Properties().useBlockDescriptionPrefix().setId(itemKey));
   Registry.register(BuiltInRegistries.ITEM, id, blockItem);
+  return block;
+ }
+ public static Block station(String path) {
+  Identifier id = id(path);
+  ResourceKey<Block> blockKey = ResourceKey.create(Registries.BLOCK, id);
+  Block block = new CraftingTableBlock(BlockBehaviour.Properties.of().strength(3.5f).setId(blockKey));
+  Registry.register(BuiltInRegistries.BLOCK, id, block);
+  ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, id);
+  BlockItem item = new BlockItem(block, new Item.Properties().useBlockDescriptionPrefix().setId(itemKey));
+  Registry.register(BuiltInRegistries.ITEM, id, item);
   return block;
  }
 }

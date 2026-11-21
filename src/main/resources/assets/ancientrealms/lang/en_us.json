@@ -27,5 +27,16 @@
   "block.ancientrealms.soulstone_ore": "Soulstone Ore",
   "block.ancientrealms.void_crystal_ore": "Void Crystal Ore",
   "block.ancientrealms.celestial_gold_ore": "Celestial Gold Ore",
-  "block.ancientrealms.blood_crystal_ore": "Blood Crystal Ore"
+  "block.ancientrealms.blood_crystal_ore": "Blood Crystal Ore",
+  "entity.ancientrealms.ember_dragon": "Ember Dragon",
+  "entity.ancientrealms.frost_dragon": "Frost Dragon",
+  "entity.ancientrealms.storm_dragon": "Storm Dragon",
+  "block.ancientrealms.dragon_forge": "Dragon Forge",
+  "block.ancientrealms.rune_anvil": "Rune Anvil",
+  "block.ancientrealms.soul_altar": "Soul Altar",
+  "block.ancientrealms.elemental_crucible": "Elemental Crucible",
+  "block.ancientrealms.celestial_loom": "Celestial Loom",
+  "block.ancientrealms.blood_infuser": "Blood Infuser",
+  "block.ancientrealms.eternal_foundry": "Eternal Foundry",
+  "block.ancientrealms.world_core_matrix": "World Core Matrix"
 }

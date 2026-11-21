@@ -1,6 +1,7 @@
 package com.ancientrealms.items;
 
 import com.ancientrealms.registry.Registrar;
+import com.ancientrealms.blocks.StationBlocks;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -65,6 +66,14 @@ public final class ModItems {
                 output.accept(DIVINE_ESSENCE);
                 output.accept(ANCIENT_DRAGON_SCALE);
                 output.accept(WORLD_CORE);
+                output.accept(StationBlocks.DRAGON_FORGE);
+                output.accept(StationBlocks.RUNE_ANVIL);
+                output.accept(StationBlocks.SOUL_ALTAR);
+                output.accept(StationBlocks.ELEMENTAL_CRUCIBLE);
+                output.accept(StationBlocks.CELESTIAL_LOOM);
+                output.accept(StationBlocks.BLOOD_INFUSER);
+                output.accept(StationBlocks.ETERNAL_FOUNDRY);
+                output.accept(StationBlocks.WORLD_CORE_MATRIX);
             })
             .build());
     }
