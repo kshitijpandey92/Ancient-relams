@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " D ",
+    "CEC",
+    " A "
+  ],
+  "key": {
+    "D": "ancientrealms:dragon_heart",
+    "C": "ancientrealms:celestial_gold_ingot",
+    "E": "ancientrealms:eternal_fragment",
+    "A": "ancientrealms:ancient_essence"
+  },
+  "result": {
+    "id": "ancientrealms:kingdom_sigil",
+    "count": 1
+  }
+}
