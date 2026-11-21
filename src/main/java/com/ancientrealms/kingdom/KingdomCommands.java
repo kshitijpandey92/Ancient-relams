@@ -17,20 +17,19 @@ public final class KingdomCommands {
             dispatcher.register(Commands.literal("kingdom")
                 .then(Commands.literal("create")
                     .then(Commands.argument("name", StringArgumentType.word())
-                        .executes(context -> create(context.getSource().getPlayerOrException(),
+                        .executes(context -> create(context.getSource().getPlayerOrException(), context.getSource().getServer().getScoreboard(),
                             StringArgumentType.getString(context, "name")))))
                 .then(Commands.literal("info")
-                    .executes(context -> info(context.getSource().getPlayerOrException())))
+                    .executes(context -> info(context.getSource().getPlayerOrException(), context.getSource().getServer().getScoreboard())))
             )
         );
     }
 
-    private static int create(ServerPlayer player, String name) {
+    private static int create(ServerPlayer player, Scoreboard scoreboard, String name) {
         if (!name.matches("[A-Za-z0-9_]{3,16}")) {
             player.sendSystemMessage(Component.literal("Kingdom names must be 3-16 letters, numbers or underscores."));
             return 0;
         }
-        Scoreboard scoreboard = player.serverLevel().getServer().getScoreboard();
         if (scoreboard.getPlayersTeam(player.getScoreboardName()) != null) {
             player.sendSystemMessage(Component.literal("You already belong to a kingdom.").withStyle(ChatFormatting.RED));
             return 0;
@@ -47,8 +46,8 @@ public final class KingdomCommands {
         return 1;
     }
 
-    private static int info(ServerPlayer player) {
-        PlayerTeam team = player.getServer().getScoreboard().getPlayersTeam(player.getScoreboardName());
+    private static int info(ServerPlayer player, Scoreboard scoreboard) {
+        PlayerTeam team = scoreboard.getPlayersTeam(player.getScoreboardName());
         if (team == null) {
             player.sendSystemMessage(Component.literal("You do not belong to a kingdom. Create one with /kingdom create <name>."));
             return 0;
