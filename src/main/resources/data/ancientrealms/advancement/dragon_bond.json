@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "id": "ancientrealms:dragon_heart"
+      "id": "ancientrealms:dragon_treat"
     },
     "title": {
       "translate": "advancements.ancientrealms.dragon_bond.title"
@@ -15,17 +15,51 @@
     "hidden": false
   },
   "criteria": {
-    "heart": {
-      "trigger": "minecraft:inventory_changed",
+    "bond_ember": {
+      "trigger": "minecraft:player_interacted_with_entity",
       "conditions": {
-        "items": [
-          {
-            "items": [
-              "ancientrealms:dragon_heart"
-            ]
-          }
-        ]
+        "item": {
+          "items": [
+            "ancientrealms:dragon_treat"
+          ]
+        },
+        "entity": {
+          "type": "ancientrealms:ember_dragon"
+        }
+      }
+    },
+    "bond_frost": {
+      "trigger": "minecraft:player_interacted_with_entity",
+      "conditions": {
+        "item": {
+          "items": [
+            "ancientrealms:dragon_treat"
+          ]
+        },
+        "entity": {
+          "type": "ancientrealms:frost_dragon"
+        }
+      }
+    },
+    "bond_storm": {
+      "trigger": "minecraft:player_interacted_with_entity",
+      "conditions": {
+        "item": {
+          "items": [
+            "ancientrealms:dragon_treat"
+          ]
+        },
+        "entity": {
+          "type": "ancientrealms:storm_dragon"
+        }
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "bond_ember",
+      "bond_frost",
+      "bond_storm"
+    ]
+  ]
 }
