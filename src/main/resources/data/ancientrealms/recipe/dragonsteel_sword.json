@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " D ",
+    " D ",
+    " S "
+  ],
+  "key": {
+    "D": "ancientrealms:dragonsteel_ingot",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "ancientrealms:dragonsteel_sword",
+    "count": 1
+  }
+}
