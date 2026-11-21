@@ -17,5 +17,8 @@
   "item.ancientrealms.divine_essence": "Divine Essence",
   "item.ancientrealms.ancient_dragon_scale": "Ancient Dragon Scale",
   "item.ancientrealms.world_core": "World Core",
-  "itemGroup.ancientrealms.main": "Ancient Realms"
+  "itemGroup.ancientrealms.main": "Ancient Realms",
+  "item.ancientrealms.adamantite_sword": "Adamantite Sword",
+  "item.ancientrealms.dragonsteel_sword": "Dragonsteel Sword",
+  "item.ancientrealms.celestial_gold_sword": "Celestial Gold Sword"
 }
