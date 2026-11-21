@@ -15,15 +15,16 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 
 public final class DragonEggNestBlock extends Block {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
+    public static final IntegerProperty SPECIES = IntegerProperty.create("species", 0, 2);
 
     public DragonEggNestBlock(BlockBehaviour.Properties properties) {
         super(properties);
-        registerDefaultState(stateDefinition.any().setValue(AGE, 0));
+        registerDefaultState(stateDefinition.any().setValue(AGE, 0).setValue(SPECIES, 0));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(AGE);
+        builder.add(AGE, SPECIES);
     }
 
     @Override
@@ -38,7 +39,12 @@ public final class DragonEggNestBlock extends Block {
             level.setBlock(pos, state.setValue(AGE, age + 1), 3);
             return;
         }
-        var dragon = DragonTypes.EMBER_DRAGON.create(level, EntitySpawnReason.TRIGGERED);
+        var type = switch (state.getValue(SPECIES)) {
+            case 1 -> DragonTypes.FROST_DRAGON;
+            case 2 -> DragonTypes.STORM_DRAGON;
+            default -> DragonTypes.EMBER_DRAGON;
+        };
+        var dragon = type.create(level, EntitySpawnReason.TRIGGERED);
         if (dragon != null) {
             dragon.setPos(pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5);
             if (level.addFreshEntity(dragon)) {
