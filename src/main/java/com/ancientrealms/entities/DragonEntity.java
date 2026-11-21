@@ -11,8 +11,10 @@ import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 public class DragonEntity extends PathfinderMob {
+ private int elementalCooldown = 0;
  public DragonEntity(EntityType<? extends DragonEntity> type, Level level) { super(type, level); this.xpReward = 45; }
  public static AttributeSupplier.Builder createAttributes() {
   return PathfinderMob.createMobAttributes().add(Attributes.MAX_HEALTH,180.0).add(Attributes.ARMOR,14.0).add(Attributes.ATTACK_DAMAGE,18.0).add(Attributes.MOVEMENT_SPEED,0.28).add(Attributes.FOLLOW_RANGE,56.0).add(Attributes.KNOCKBACK_RESISTANCE,0.85);
@@ -25,6 +27,23 @@ public class DragonEntity extends PathfinderMob {
   goalSelector.addGoal(4,new RandomLookAroundGoal(this));
   targetSelector.addGoal(1,new HurtByTargetGoal(this));
   targetSelector.addGoal(2,new NearestAttackableTargetGoal<>(this,Player.class,true));
+ }
+ @Override public void tick() {
+  super.tick();
+  if (elementalCooldown > 0) elementalCooldown--;
+  LivingEntity target = getTarget();
+  if (!level().isClientSide() && target != null && distanceToSqr(target) < 225.0 && elementalCooldown == 0) {
+   if (getType() == DragonTypes.EMBER_DRAGON) {
+    target.setSecondsOnFire(6);
+   } else if (getType() == DragonTypes.FROST_DRAGON) {
+    target.setTicksFrozen(Math.min(300, target.getTicksFrozen() + 100));
+   } else {
+    double dx = target.getX() - getX();
+    double dz = target.getZ() - getZ();
+    target.push(dx * 0.12, 0.8, dz * 0.12);
+   }
+   elementalCooldown = 100;
+  }
  }
  @Override public boolean fireImmune() { return getType()==DragonTypes.EMBER_DRAGON || super.fireImmune(); }
  @Override public boolean canBeLeashed() { return false; }
