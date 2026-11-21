@@ -34,7 +34,7 @@ public class DragonEntity extends PathfinderMob {
   LivingEntity target = getTarget();
   if (!level().isClientSide() && target != null && distanceToSqr(target) < 225.0 && elementalCooldown == 0) {
    if (getType() == DragonTypes.EMBER_DRAGON) {
-    target.setSecondsOnFire(6);
+    target.igniteForSeconds(6.0F);
    } else if (getType() == DragonTypes.FROST_DRAGON) {
     target.setTicksFrozen(Math.min(300, target.getTicksFrozen() + 100));
    } else {
