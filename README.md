@@ -1,21 +1,30 @@
 # Ancient Realms: Rise of the Dragon Kingdoms
 
-A Fabric mod for Minecraft Java 26.2, built with Java 25.
+A Fabric mod project targeting Minecraft Java 26.2 and Java 25.
 
 **Mod ID:** `ancientrealms`  
 **Package:** `com.ancientrealms`
 
-## Project status
-This repository currently contains an early foundation scaffold. It is not yet a complete playable mod. See [DEVELOPMENT_STATUS.md](DEVELOPMENT_STATUS.md) for the verified state and [TODO_ASSETS.md](TODO_ASSETS.md) for missing art.
+## Current build
 
-## Build
-Use the Gradle wrapper from the repository root:
+The repository contains a buildable foundation and an expanding content implementation:
+- 17 progression materials and four sword tiers.
+- Seven registered ore blocks with models, loot tables, mining tags, and smelting recipes.
+- A dedicated Ancient Realms creative tab.
+- JSON configuration for progression-related tuning.
+
+**Important:** This is not yet the complete playable mod. Natural ore generation, eight functional crafting stations, full equipment/progression, original textures, dragons, kingdoms, and in-game verification remain outstanding. See [DEVELOPMENT_STATUS.md](DEVELOPMENT_STATUS.md) and [TODO_ASSETS.md](TODO_ASSETS.md).
+
+## Build and CI
+
+GitHub Actions builds the project with Java 25 and Gradle 9.8.0 on pushes and pull requests. Open the [Actions page](https://github.com/kshitijpandey92/Ancient-relams/actions) to see the latest build result and download the `ancientrealms-fabric-26.2` artifact when a run succeeds.
+
+If you have a Gradle installation in your development environment, run:
 
 ```bash
-./gradlew build
+gradle build
 ```
 
-The GitHub Actions workflow performs the same build on pushes and pull requests. CI currently uses Java 25 and Gradle 9.8.0 to satisfy the selected Fabric Loom plugin's minimum Gradle requirement.
+## Project specification
 
-## Development
-Read [MASTER_PROMPT.md](MASTER_PROMPT.md) for the full project scope and phase rules.
+See [MASTER_PROMPT.md](MASTER_PROMPT.md) for the intended complete feature scope.
