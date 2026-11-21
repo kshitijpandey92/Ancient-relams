@@ -2,6 +2,8 @@ package com.ancientrealms.items;
 
 import com.ancientrealms.registry.Registrar;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 
 public final class ModItems {
     public static final Item MYTHRIL_INGOT = Registrar.item("mythril_ingot", Item::new);
@@ -26,6 +28,25 @@ public final class ModItems {
     private ModItems() {}
 
     public static void initialize() {
-        // Items are registered during class initialization; recipes and the creative tab are data-driven.
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register(tab -> {
+            tab.accept(MYTHRIL_INGOT);
+            tab.accept(ADAMANTITE_INGOT);
+            tab.accept(DRAGONSTEEL_INGOT);
+            tab.accept(SOULSTONE);
+            tab.accept(VOID_CRYSTAL);
+            tab.accept(CELESTIAL_GOLD_INGOT);
+            tab.accept(BLOOD_CRYSTAL);
+            tab.accept(ANCIENT_ESSENCE);
+            tab.accept(FROST_CORE);
+            tab.accept(THUNDER_CORE);
+            tab.accept(INFERNAL_SHARD);
+            tab.accept(DRAGON_HEART);
+            tab.accept(CRYSTAL_DUST);
+            tab.accept(ETERNAL_FRAGMENT);
+            tab.accept(DIVINE_ESSENCE);
+            tab.accept(ANCIENT_DRAGON_SCALE);
+            tab.accept(WORLD_CORE);
+        });
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.COMBAT).register(tab -> tab.accept(MYTHRIL_SWORD));
     }
 }
