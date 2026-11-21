@@ -1,4 +1,8 @@
 package com.ancientrealms.entities;
+
+import com.ancientrealms.items.ModItems;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -13,12 +17,26 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
+
 public class DragonEntity extends PathfinderMob {
  private int elementalCooldown = 0;
- public DragonEntity(EntityType<? extends DragonEntity> type, Level level) { super(type, level); this.xpReward = 45; }
- public static AttributeSupplier.Builder createAttributes() {
-  return PathfinderMob.createMobAttributes().add(Attributes.MAX_HEALTH,180.0).add(Attributes.ARMOR,14.0).add(Attributes.ATTACK_DAMAGE,18.0).add(Attributes.MOVEMENT_SPEED,0.28).add(Attributes.FOLLOW_RANGE,56.0).add(Attributes.KNOCKBACK_RESISTANCE,0.85);
+ private boolean saddled = false;
+
+ public DragonEntity(EntityType<? extends DragonEntity> type, Level level) {
+  super(type, level);
+  this.xpReward = 45;
  }
+
+ public static AttributeSupplier.Builder createAttributes() {
+  return PathfinderMob.createMobAttributes()
+   .add(Attributes.MAX_HEALTH,180.0)
+   .add(Attributes.ARMOR,14.0)
+   .add(Attributes.ATTACK_DAMAGE,18.0)
+   .add(Attributes.MOVEMENT_SPEED,0.28)
+   .add(Attributes.FOLLOW_RANGE,56.0)
+   .add(Attributes.KNOCKBACK_RESISTANCE,0.85);
+ }
+
  @Override protected void registerGoals() {
   goalSelector.addGoal(0,new FloatGoal(this));
   goalSelector.addGoal(1,new MeleeAttackGoal(this,1.18,true));
@@ -28,6 +46,28 @@ public class DragonEntity extends PathfinderMob {
   targetSelector.addGoal(1,new HurtByTargetGoal(this));
   targetSelector.addGoal(2,new NearestAttackableTargetGoal<>(this,Player.class,true));
  }
+
+ @Override public InteractionResult mobInteract(Player player, InteractionHand hand) {
+  var held = player.getItemInHand(hand);
+  if (!level().isClientSide() && !saddled && held.is(ModItems.DRAGON_SADDLE)) {
+   saddled = true;
+   if (!player.getAbilities().instabuild) held.shrink(1);
+   setTarget(null);
+   getNavigation().stop();
+   player.displayClientMessage(net.minecraft.network.chat.Component.literal("Dragon saddled! Interact again to mount."), true);
+   return InteractionResult.SUCCESS;
+  }
+  if (saddled && getPassengers().isEmpty() && !player.isPassenger()) {
+   if (!level().isClientSide()) {
+    setTarget(null);
+    getNavigation().stop();
+    player.startRiding(this);
+   }
+   return InteractionResult.SUCCESS;
+  }
+  return super.mobInteract(player, hand);
+ }
+
  @Override public void tick() {
   super.tick();
   if (elementalCooldown > 0) elementalCooldown--;
@@ -45,6 +85,10 @@ public class DragonEntity extends PathfinderMob {
    elementalCooldown = 100;
   }
  }
- @Override public boolean fireImmune() { return getType()==DragonTypes.EMBER_DRAGON || super.fireImmune(); }
+
+ @Override public boolean fireImmune() {
+  return getType()==DragonTypes.EMBER_DRAGON || super.fireImmune();
+ }
+
  @Override public boolean canBeLeashed() { return false; }
 }
