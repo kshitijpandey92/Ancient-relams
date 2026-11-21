@@ -16,7 +16,8 @@
   "item.ancientrealms.eternal_fragment": "Eternal Fragment",
   "item.ancientrealms.divine_essence": "Divine Essence",
   "item.ancientrealms.ancient_dragon_scale": "Ancient Dragon Scale",
-  "item.ancientrealms.world_core": "World Core",\n  "item.ancientrealms.dragon_saddle": "Dragon Saddle",
+  "item.ancientrealms.world_core": "World Core",
+  "item.ancientrealms.dragon_saddle": "Dragon Saddle",
   "item.ancientrealms.dragon_egg": "Ancient Dragon Egg",
   "item.ancientrealms.kingdom_sigil": "Kingdom Sigil",
   "item.ancientrealms.dragon_treat": "Dragon Treat",
@@ -47,5 +48,11 @@
   "advancements.ancientrealms.frost_slayer.title": "Heart of Winter",
   "advancements.ancientrealms.frost_slayer.description": "Defeat a Frost Dragon and claim its core.",
   "advancements.ancientrealms.storm_slayer.title": "Eye of the Tempest",
-  "advancements.ancientrealms.storm_slayer.description": "Defeat a Storm Dragon and claim its core.",\n  "advancements.ancientrealms.dragon_rider.title": "Into the Skies",\n  "advancements.ancientrealms.dragon_rider.description": "Saddle and ride an Ancient Realms dragon."
+  "advancements.ancientrealms.storm_slayer.description": "Defeat a Storm Dragon and claim its core.",
+  "advancements.ancientrealms.dragon_rider.title": "Into the Skies",
+  "advancements.ancientrealms.dragon_rider.description": "Bond with and ride an Ancient Realms dragon.",
+  "advancements.ancientrealms.dragon_bond.title": "A Dragon's Trust",
+  "advancements.ancientrealms.dragon_bond.description": "Earn a dragon's trust with a Dragon Treat.",
+  "advancements.ancientrealms.kingdom_founder.title": "A Realm of Your Own",
+  "advancements.ancientrealms.kingdom_founder.description": "Craft the sigil of an Ancient Realms kingdom."
 }
