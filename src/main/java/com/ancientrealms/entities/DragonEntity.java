@@ -50,7 +50,7 @@ public class DragonEntity extends PathfinderMob {
 
  @Override public InteractionResult mobInteract(Player player, InteractionHand hand) {
   var held = player.getItemInHand(hand);
-  if (!level().isClientSide() && bondedPlayer == null && held.is(ModItems.DRAGON_HEART)) {
+  if (!level().isClientSide() && bondedPlayer == null && held.is(ModItems.DRAGON_TREAT)) {
    bondedPlayer = player.getUUID();
    if (!player.getAbilities().instabuild) held.shrink(1);
    setTarget(null);
@@ -82,13 +82,13 @@ public class DragonEntity extends PathfinderMob {
   LivingEntity target = getTarget();
   if (!level().isClientSide() && target != null && distanceToSqr(target) < 225.0 && elementalCooldown == 0) {
    if (getType() == DragonTypes.EMBER_DRAGON) {
-    target.igniteForSeconds(6.0F);
+    target.hurt(damageSources().mobAttack(this), 8.0F);\n    target.igniteForSeconds(6.0F);
    } else if (getType() == DragonTypes.FROST_DRAGON) {
-    target.setTicksFrozen(Math.min(300, target.getTicksFrozen() + 100));
+    target.hurt(damageSources().mobAttack(this), 8.0F);\n    target.setTicksFrozen(Math.min(300, target.getTicksFrozen() + 100));
    } else {
     double dx = target.getX() - getX();
     double dz = target.getZ() - getZ();
-    target.push(dx * 0.12, 0.8, dz * 0.12);
+    target.hurt(damageSources().mobAttack(this), 8.0F);\n    target.push(dx * 0.12, 0.8, dz * 0.12);
    }
    elementalCooldown = 100;
   }
