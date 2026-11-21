@@ -3,6 +3,7 @@ package com.ancientrealms.items;
 import com.ancientrealms.registry.Registrar;
 import com.ancientrealms.blocks.StationBlocks;
 import com.ancientrealms.blocks.ModBlocks;
+import com.ancientrealms.items.DragonEggItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -38,7 +39,7 @@ public final class ModItems {
     public static final Item ANCIENT_DRAGON_SCALE = Registrar.item("ancient_dragon_scale", Item::new);
     public static final Item WORLD_CORE = Registrar.item("world_core", Item::new);
     public static final Item DRAGON_SADDLE = Registrar.item("dragon_saddle", Item::new);
-    public static final Item DRAGON_EGG = Registrar.item("dragon_egg", Item::new);
+    public static final Item DRAGON_EGG = Registrar.item("dragon_egg", DragonEggItem::new);
     public static final Item KINGDOM_SIGIL = Registrar.item("kingdom_sigil", Item::new);
     public static final Item DRAGON_TREAT = Registrar.item("dragon_treat", Item::new);
 
