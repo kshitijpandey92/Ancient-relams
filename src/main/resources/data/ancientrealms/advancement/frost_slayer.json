@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:adventure/kill_a_mob",
+  "display": {
+    "icon": {
+      "id": "ancientrealms:frost_core"
+    },
+    "title": {
+      "translate": "advancements.ancientrealms.frost_slayer.title"
+    },
+    "description": {
+      "translate": "advancements.ancientrealms.frost_slayer.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "slayer": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "ancientrealms:frost_dragon"
+        }
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "ancientrealms:celestial_gold_ingot"
+    ]
+  }
+}

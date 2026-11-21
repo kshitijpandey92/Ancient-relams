@@ -38,5 +38,11 @@
   "block.ancientrealms.celestial_loom": "Celestial Loom",
   "block.ancientrealms.blood_infuser": "Blood Infuser",
   "block.ancientrealms.eternal_foundry": "Eternal Foundry",
-  "block.ancientrealms.world_core_matrix": "World Core Matrix"
+  "block.ancientrealms.world_core_matrix": "World Core Matrix",
+  "advancements.ancientrealms.ember_slayer.title": "Emberfall",
+  "advancements.ancientrealms.ember_slayer.description": "Defeat an Ember Dragon and claim its heart.",
+  "advancements.ancientrealms.frost_slayer.title": "Heart of Winter",
+  "advancements.ancientrealms.frost_slayer.description": "Defeat a Frost Dragon and claim its core.",
+  "advancements.ancientrealms.storm_slayer.title": "Eye of the Tempest",
+  "advancements.ancientrealms.storm_slayer.description": "Defeat a Storm Dragon and claim its core."
 }

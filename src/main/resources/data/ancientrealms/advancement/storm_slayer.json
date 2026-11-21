@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:adventure/kill_a_mob",
+  "display": {
+    "icon": {
+      "id": "ancientrealms:thunder_core"
+    },
+    "title": {
+      "translate": "advancements.ancientrealms.storm_slayer.title"
+    },
+    "description": {
+      "translate": "advancements.ancientrealms.storm_slayer.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "slayer": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "ancientrealms:storm_dragon"
+        }
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "ancientrealms:eternal_fragment_from_divine_essence"
+    ]
+  }
+}
