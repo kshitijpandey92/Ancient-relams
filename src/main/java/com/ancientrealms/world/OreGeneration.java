@@ -17,6 +17,15 @@ public final class OreGeneration {
     private OreGeneration() {}
 
     public static void register() {
+        ResourceKey<PlacedFeature> dragonNest = ResourceKey.create(
+            Registries.PLACED_FEATURE, Registrar.id("dragon_nest")
+        );
+        BiomeModifications.addFeature(
+            BiomeSelectors.foundInOverworld(),
+            GenerationStep.Decoration.VEGETAL_DECORATION,
+            dragonNest
+        );
+
         for (String ore : ORES) {
             ResourceKey<PlacedFeature> key = ResourceKey.create(
                 Registries.PLACED_FEATURE, Registrar.id(ore + "_ore")
