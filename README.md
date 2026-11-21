@@ -14,7 +14,7 @@ The project uses Fabric Loom split client/common source sets and declares the mo
 
 ## Current content
 - 17 progression materials and four sword tiers.
-- Seven custom ores with overworld world-generation data.
+- Seven custom ores with overworld world-generation data, plus rare naturally generated dragon egg nests that can hatch Ember hatchlings.
 - Three distinct dragons: Ember, Frost and Storm, each with a custom animated multipart 3D model, elemental combat behavior and its own texture.
 - Bonding, treat-based healing, saddles, rider-controlled flight and incubating species-specific dragon eggs.
 - Eight themed crafting workstations using Minecraft's native 3x3 crafting interface.
