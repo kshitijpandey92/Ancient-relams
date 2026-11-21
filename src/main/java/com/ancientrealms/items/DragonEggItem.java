@@ -10,8 +10,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public final class DragonEggItem extends Item {
+    private final int species;
     public DragonEggItem(Item.Properties properties) {
+        this(properties, 0);
+    }
+
+    public DragonEggItem(Item.Properties properties, int species) {
         super(properties);
+        this.species = Math.max(0, Math.min(2, species));
     }
 
     @Override
@@ -26,7 +32,8 @@ public final class DragonEggItem extends Item {
         }
         if (!level.isClientSide()) {
             BlockState nest = ModBlocks.DRAGON_EGG_NEST.defaultBlockState()
-                .setValue(DragonEggNestBlock.AGE, 0);
+                .setValue(DragonEggNestBlock.AGE, 0)
+                .setValue(DragonEggNestBlock.SPECIES, species);
             if (!level.setBlock(target, nest, 3)) {
                 return InteractionResult.FAIL;
             }
