@@ -18,4 +18,14 @@ public final class Registrar {
   Item item=factory.apply(new Item.Properties().setId(key));
   return Registry.register(BuiltInRegistries.ITEM,id,item);
  }
+ public static Block block(String path) {
+  Identifier id = id(path);
+  ResourceKey<Block> blockKey = ResourceKey.create(Registries.BLOCK, id);
+  Block block = new Block(BlockBehaviour.Properties.of().strength(3.0f, 6.0f).requiresCorrectToolForDrops().setId(blockKey));
+  Registry.register(BuiltInRegistries.BLOCK, id, block);
+  ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, id);
+  BlockItem blockItem = new BlockItem(block, new Item.Properties().useBlockDescriptionPrefix().setId(itemKey));
+  Registry.register(BuiltInRegistries.ITEM, id, blockItem);
+  return block;
+ }
 }
