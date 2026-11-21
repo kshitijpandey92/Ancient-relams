@@ -1,1 +1,20 @@
-{"item.ancientrealms.mythril_ingot":"Mythril Ingot","item.ancientrealms.mythril_sword":"Mythril Sword"}
+{
+  "item.ancientrealms.mythril_ingot": "Mythril Ingot",
+  "item.ancientrealms.mythril_sword": "Mythril Sword",
+  "item.ancientrealms.adamantite_ingot": "Adamantite Ingot",
+  "item.ancientrealms.dragonsteel_ingot": "Dragonsteel Ingot",
+  "item.ancientrealms.soulstone": "Soulstone",
+  "item.ancientrealms.void_crystal": "Void Crystal",
+  "item.ancientrealms.celestial_gold_ingot": "Celestial Gold Ingot",
+  "item.ancientrealms.blood_crystal": "Blood Crystal",
+  "item.ancientrealms.ancient_essence": "Ancient Essence",
+  "item.ancientrealms.frost_core": "Frost Core",
+  "item.ancientrealms.thunder_core": "Thunder Core",
+  "item.ancientrealms.infernal_shard": "Infernal Shard",
+  "item.ancientrealms.dragon_heart": "Dragon Heart",
+  "item.ancientrealms.crystal_dust": "Crystal Dust",
+  "item.ancientrealms.eternal_fragment": "Eternal Fragment",
+  "item.ancientrealms.divine_essence": "Divine Essence",
+  "item.ancientrealms.ancient_dragon_scale": "Ancient Dragon Scale",
+  "item.ancientrealms.world_core": "World Core"
+}
