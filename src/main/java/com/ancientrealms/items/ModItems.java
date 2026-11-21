@@ -2,6 +2,14 @@ package com.ancientrealms.items;
 
 import com.ancientrealms.registry.Registrar;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.network.chat.Component;
+import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 
@@ -28,25 +36,30 @@ public final class ModItems {
     private ModItems() {}
 
     public static void initialize() {
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS).register(tab -> {
-            tab.accept(MYTHRIL_INGOT);
-            tab.accept(ADAMANTITE_INGOT);
-            tab.accept(DRAGONSTEEL_INGOT);
-            tab.accept(SOULSTONE);
-            tab.accept(VOID_CRYSTAL);
-            tab.accept(CELESTIAL_GOLD_INGOT);
-            tab.accept(BLOOD_CRYSTAL);
-            tab.accept(ANCIENT_ESSENCE);
-            tab.accept(FROST_CORE);
-            tab.accept(THUNDER_CORE);
-            tab.accept(INFERNAL_SHARD);
-            tab.accept(DRAGON_HEART);
-            tab.accept(CRYSTAL_DUST);
-            tab.accept(ETERNAL_FRAGMENT);
-            tab.accept(DIVINE_ESSENCE);
-            tab.accept(ANCIENT_DRAGON_SCALE);
-            tab.accept(WORLD_CORE);
-        });
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.COMBAT).register(tab -> tab.accept(MYTHRIL_SWORD));
+        ResourceKey<CreativeModeTab> key = ResourceKey.create(Registries.CREATIVE_MODE_TAB, Registrar.id("ancient_realms"));
+        Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, key, FabricCreativeModeTab.builder()
+            .title(Component.translatable("itemGroup.ancientrealms.main"))
+            .icon(() -> new ItemStack(MYTHRIL_SWORD))
+            .displayItems((parameters, output) -> {
+                output.accept(MYTHRIL_INGOT);
+                output.accept(MYTHRIL_SWORD);
+                output.accept(ADAMANTITE_INGOT);
+                output.accept(DRAGONSTEEL_INGOT);
+                output.accept(SOULSTONE);
+                output.accept(VOID_CRYSTAL);
+                output.accept(CELESTIAL_GOLD_INGOT);
+                output.accept(BLOOD_CRYSTAL);
+                output.accept(ANCIENT_ESSENCE);
+                output.accept(FROST_CORE);
+                output.accept(THUNDER_CORE);
+                output.accept(INFERNAL_SHARD);
+                output.accept(DRAGON_HEART);
+                output.accept(CRYSTAL_DUST);
+                output.accept(ETERNAL_FRAGMENT);
+                output.accept(DIVINE_ESSENCE);
+                output.accept(ANCIENT_DRAGON_SCALE);
+                output.accept(WORLD_CORE);
+            })
+            .build());
     }
 }
