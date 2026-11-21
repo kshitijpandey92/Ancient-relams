@@ -1,23 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "equipment",
   "pattern": [
     "LLL",
     "SIS"
   ],
   "key": {
-    "L": {
-      "item": "minecraft:leather"
-    },
-    "S": {
-      "item": "minecraft:string"
-    },
-    "I": {
-      "item": "ancientrealms:dragonsteel_ingot"
-    }
+    "L": "minecraft:leather",
+    "S": "minecraft:string",
+    "I": "ancientrealms:dragonsteel_ingot"
   },
   "result": {
     "id": "ancientrealms:dragon_saddle",
     "count": 1
   }
-}\n
+}
