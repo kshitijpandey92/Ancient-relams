@@ -1,19 +1,52 @@
 {
   "variants": {
-    "age=0": {
-      "model": "ancientrealms:block/dragon_egg_nest"
+    "age=0,species=0": {
+      "model": "ancientrealms:block/dragon_egg_nest",
+      "y": 0
     },
-    "age=1": {
+    "age=0,species=1": {
       "model": "ancientrealms:block/dragon_egg_nest",
       "y": 90
     },
-    "age=2": {
+    "age=0,species=2": {
       "model": "ancientrealms:block/dragon_egg_nest",
       "y": 180
     },
-    "age=3": {
+    "age=1,species=0": {
       "model": "ancientrealms:block/dragon_egg_nest",
-      "y": 270
+      "y": 0
+    },
+    "age=1,species=1": {
+      "model": "ancientrealms:block/dragon_egg_nest",
+      "y": 90
+    },
+    "age=1,species=2": {
+      "model": "ancientrealms:block/dragon_egg_nest",
+      "y": 180
+    },
+    "age=2,species=0": {
+      "model": "ancientrealms:block/dragon_egg_nest",
+      "y": 0
+    },
+    "age=2,species=1": {
+      "model": "ancientrealms:block/dragon_egg_nest",
+      "y": 90
+    },
+    "age=2,species=2": {
+      "model": "ancientrealms:block/dragon_egg_nest",
+      "y": 180
+    },
+    "age=3,species=0": {
+      "model": "ancientrealms:block/dragon_egg_nest",
+      "y": 0
+    },
+    "age=3,species=1": {
+      "model": "ancientrealms:block/dragon_egg_nest",
+      "y": 90
+    },
+    "age=3,species=2": {
+      "model": "ancientrealms:block/dragon_egg_nest",
+      "y": 180
     }
   }
 }
