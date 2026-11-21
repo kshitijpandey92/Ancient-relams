@@ -21,7 +21,7 @@
 - Dragon owner and saddle state are persisted through Minecraft entity save/load hooks.
 - The incubating egg nest hatches the selected adult species after three incubation stages. Juvenile hatchling forms and dragon growth stages remain unimplemented.
 - The eight stations still use the vanilla crafting-table interface; they do not have individual block entities, processing queues or gated custom menus.
-- Kingdom sigil is a progression/crafting item, not a complete faction, settlement or NPC kingdom simulation.
+- Basic persistent kingdom teams are implemented through `/kingdom create <name>` and `/kingdom info`; diplomatic systems, invitations, settlements, NPCs and territory are not yet implemented.
 - Quests, structures, raids and scheduled world events are not implemented.
 - Many assets still use vanilla placeholder textures.
 - The latest GitHub Actions Gradle build passed compilation and packaging. No Minecraft client/server launch or in-world save/reload test has been performed.

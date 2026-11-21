@@ -8,6 +8,7 @@ A Fabric mod targeting Minecraft Java 26.2 and Java 25.
 - Three distinct dragons: Ember, Frost and Storm, each with a custom animated multipart 3D model, elemental combat behavior and its own texture.
 - Bonding, treat-based healing, saddles, rider-controlled flight and incubating species-specific dragon eggs.
 - Eight themed crafting workstations using Minecraft's native 3x3 crafting interface.
+- Persistent scoreboard-based kingdom creation and inspection commands (`/kingdom create <name>`, `/kingdom info`).
 - Dedicated creative tab and JSON configuration.
 
 ## Dragon summoning
