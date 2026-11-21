@@ -1,32 +1,36 @@
 # Development Status
 
-## Project target
+## Target
 - Minecraft Java 26.2
-- Fabric only (no Forge or NeoForge)
+- Fabric only
 - Java 25
 - Mod ID: `ancientrealms`
 - Main package: `com.ancientrealms`
 
-## Current state
-- [x] Initial Gradle project and Fabric metadata created.
-- [x] Main and client entrypoints added.
-- [x] Basic config loader and bounded weapon rarity enum added.
-- [x] Mythril ingot and sword registration stubs added.
-- [x] Initial item models, language entries, and sword recipe JSON added.
-- [x] GitHub Actions build workflow added.
-- [ ] Phase 1 is not verified: CI has not completed a successful build.
-- [ ] Item textures and mod icon are still missing.
-- [ ] Phase 2 materials, ores, stations, and progression are not implemented.
+## Implemented in the repository
+- [x] Gradle + Fabric Loom project and GitHub Actions build workflow.
+- [x] Main and client entrypoints.
+- [x] JSON config loader with bounded values for dragon growth, weapon XP, particle limits, and world-event frequency.
+- [x] Shared item and block registration helpers using 26.2 resource keys and item/block properties.
+- [x] 17 progression materials registered (Mythril, Adamantite, Dragonsteel, Soulstone, Void Crystal, Celestial Gold, Blood Crystal, Ancient Essence, Frost Core, Thunder Core, Infernal Shard, Dragon Heart, Crystal Dust, Eternal Fragment, Divine Essence, Ancient Dragon Scale, World Core).
+- [x] Mythril, Adamantite, Dragonsteel, and Celestial Gold sword items registered.
+- [x] Dedicated Ancient Realms creative tab.
+- [x] Seven ore blocks registered with blockstates, block/item models, loot tables, and pickaxe/iron-tool tags.
+- [x] Basic smelting recipes for the seven ores.
+- [x] Crafting recipes for Mythril, Adamantite, Dragonsteel, and Celestial Gold swords.
+- [x] English names for registered items, blocks, and the creative tab.
 
-## Build issue found and correction
-The first GitHub Actions run failed before Java compilation because Fabric Loom 1.19.4 requires Gradle 9.8.0, while the workflow installed Gradle 9.5.1. The workflow is being updated to use Gradle 9.8.0. This fixes the identified Gradle/Loom version mismatch; it does not yet prove that the Java sources compile.
+## Verification
+- GitHub Actions run [44890423469](https://github.com/kshitijpandey92/Ancient-relams/actions/runs/44890423469) passed Gradle build and uploaded its mod JAR at commit `98ed4daf992bbdbab75f5cf087b06973c0476611`.
+- Later ore-registration changes were still being verified when this file was updated. Check the Actions page for the latest commit result.
+- No Minecraft client launch, dedicated-server launch, world-generation, or save/reload test has been recorded.
 
-## Verification record
-- GitHub Actions run 1: failed during Gradle project configuration due to the Gradle 9.5.1 / Loom 1.19.4 compatibility mismatch.
-- No successful build, client launch, dedicated-server launch, or save/load test has been recorded.
+## Not complete yet
+- [ ] Original custom PNG textures and mod icon. Ore blocks currently reuse vanilla textures; item models reference missing custom textures.
+- [ ] Natural ore world generation and biome placement.
+- [ ] Eight functional crafting stations with block entities, menus/screens, server-side recipe processing, and station-specific progression gates.
+- [ ] Full tier equipment sets, tools, armor, and complete progression/advancement tree.
+- [ ] Dragon entities, dragon growth/AI, kingdom systems, and world events.
+- [ ] In-game client/server testing and save/load verification.
 
-## Next work
-1. Re-run CI with Gradle 9.8.0 and fix any subsequent dependency/API/compiler errors.
-2. Complete and verify Phase 1 before starting Phase 2.
-3. Add actual textures and icon; document any temporary placeholders.
-4. Only after Phase 1 is buildable, implement Phase 2 materials, ores, stations, and progression.
+This is an active development build, not yet the complete playable mod described in the master specification. Do not treat unchecked items as implemented.
