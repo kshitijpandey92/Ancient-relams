@@ -21,6 +21,8 @@ import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.phys.Vec3;
 
 public class DragonEntity extends PathfinderMob {
+ private static final int MAX_GROWTH_TICKS = 72000;
+ private int growthTicks = MAX_GROWTH_TICKS;
  private int elementalCooldown = 0;
  private boolean saddled = false;
  private java.util.UUID bondedPlayer = null;
@@ -28,6 +30,7 @@ public class DragonEntity extends PathfinderMob {
  public DragonEntity(EntityType<? extends DragonEntity> type, Level level) {
   super(type, level);
   this.xpReward = 45;
+  applyGrowthScale();
  }
 
  public static AttributeSupplier.Builder createAttributes() {
@@ -37,7 +40,8 @@ public class DragonEntity extends PathfinderMob {
    .add(Attributes.ATTACK_DAMAGE,18.0)
    .add(Attributes.MOVEMENT_SPEED,0.28)
    .add(Attributes.FOLLOW_RANGE,56.0)
-   .add(Attributes.KNOCKBACK_RESISTANCE,0.85);
+   .add(Attributes.KNOCKBACK_RESISTANCE,0.85)
+   .add(Attributes.SCALE,1.0);
  }
 
  @Override protected void registerGoals() {
@@ -114,8 +118,25 @@ public class DragonEntity extends PathfinderMob {
   super.travel(travelVector);
  }
 
+ public void setHatchling() {
+  growthTicks = 0;
+  applyGrowthScale();
+ }
+
+ private void applyGrowthScale() {
+  var scale = getAttribute(Attributes.SCALE);
+  if (scale != null) {
+   double progress = Math.min(1.0, growthTicks / (double) MAX_GROWTH_TICKS);
+   scale.setBaseValue(0.35 + 0.65 * progress);
+  }
+ }
+
  @Override public void tick() {
   super.tick();
+  if (!level().isClientSide() && growthTicks < MAX_GROWTH_TICKS) {
+   growthTicks = Math.min(MAX_GROWTH_TICKS, growthTicks + 1);
+   if (growthTicks % 1200 == 0 || growthTicks == MAX_GROWTH_TICKS) applyGrowthScale();
+  }
   if (elementalCooldown > 0) elementalCooldown--;
   LivingEntity target = getTarget();
   if (target != null && bondedPlayer != null && target.getUUID().equals(bondedPlayer)) { setTarget(null); target = null; }
@@ -141,6 +162,7 @@ public class DragonEntity extends PathfinderMob {
  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput output) {
   super.addAdditionalSaveData(output);
   output.putBoolean("AncientRealmsSaddled", saddled);
+  output.putInt("AncientRealmsGrowthTicks", growthTicks);
   if (bondedPlayer != null) output.putString("AncientRealmsBondedPlayer", bondedPlayer.toString());
  }
 
@@ -148,6 +170,8 @@ public class DragonEntity extends PathfinderMob {
  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput input) {
   super.readAdditionalSaveData(input);
   saddled = input.getBooleanOr("AncientRealmsSaddled", false);
+  growthTicks = Math.max(0, Math.min(MAX_GROWTH_TICKS, input.getIntOr("AncientRealmsGrowthTicks", MAX_GROWTH_TICKS)));
+  applyGrowthScale();
   String owner = input.getString("AncientRealmsBondedPlayer").orElse("");
   try {
    bondedPlayer = owner.isEmpty() ? null : java.util.UUID.fromString(owner);
