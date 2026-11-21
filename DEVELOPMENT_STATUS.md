@@ -17,7 +17,7 @@
 
 ## Important limitations (not yet complete)
 - Dragon bonding/saddle state is currently runtime-only and has not been made persistent across save/reload.
-- Passenger mounting exists, but controlled flight and directional rider controls are not implemented.
+- Passenger mounting and rider-controlled flight movement are implemented; pitch controls climb/descent and movement inputs steer the dragon.
 - Dragon egg is currently a craftable item; incubation, hatching, nests and growth stages are not implemented.
 - The eight stations still use the vanilla crafting-table interface; they do not have individual block entities, processing queues or gated custom menus.
 - Kingdom sigil is a progression/crafting item, not a complete faction, settlement or NPC kingdom simulation.
