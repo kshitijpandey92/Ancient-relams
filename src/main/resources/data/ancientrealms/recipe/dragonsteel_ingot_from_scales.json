@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SDS",
+    "SSS"
+  ],
+  "key": {
+    "S": "ancientrealms:ancient_dragon_scale",
+    "D": "ancientrealms:dragon_heart"
+  },
+  "result": {
+    "id": "ancientrealms:dragonsteel_ingot",
+    "count": 4
+  }
+}

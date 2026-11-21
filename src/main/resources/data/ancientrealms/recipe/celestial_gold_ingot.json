@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CGC",
+    "CCC"
+  ],
+  "key": {
+    "C": "ancientrealms:crystal_dust",
+    "G": "minecraft:gold_ingot"
+  },
+  "result": {
+    "id": "ancientrealms:celestial_gold_ingot",
+    "count": 2
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DDD",
+    "DWD",
+    "DDD"
+  ],
+  "key": {
+    "D": "ancientrealms:divine_essence",
+    "W": "ancientrealms:world_core"
+  },
+  "result": {
+    "id": "ancientrealms:eternal_fragment",
+    "count": 4
+  }
+}
