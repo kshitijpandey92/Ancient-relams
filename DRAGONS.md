@@ -24,7 +24,7 @@ While mounted, use normal movement keys to steer forward/back and strafe. Look u
 - `/summon ancientrealms:storm_dragon`
 
 ## Egg incubation
-Use a Dragon Egg item on a block to place an Incubating Dragon Egg Nest. Its incubation stage advances through random world ticks; once fully incubated, it hatches the selected species and removes the nest. The standard Dragon Egg hatches Ember; combine it with Frost Core or Thunder Core to craft Frost Dragon Egg or Storm Dragon Egg. Hatchlings currently emerge as adult-sized entities; juvenile growth is not implemented.
+Use a Dragon Egg item on a block to place an Incubating Dragon Egg Nest. Its incubation stage advances through random world ticks; once fully incubated, it hatches the selected species and removes the nest. The standard Dragon Egg hatches Ember; combine it with Frost Core or Thunder Core to craft Frost Dragon Egg or Storm Dragon Egg. Newly hatched dragons emerge at 35% scale and grow gradually to adult size over 72,000 game ticks (about one real-world hour at default settings). Growth is saved with the dragon and restored after reload. The `dragonGrowthSpeed` config value adjusts growth rate.
 
 ## Still in development
 Dragon ownership and saddle status are saved with the dragon and restored when the world reloads. The bonded owner can also heal the dragon by feeding it Dragon Treats (12 health per treat). The crafted Dragon Egg remains an item; the separate Incubating Dragon Egg Nest block hatches an Ember Dragon after its incubation stages. Juvenile hatchling models, growth stages, species selection, advanced flight AI and dragon armor are not yet implemented. Elemental attacks are direct combat pulses, not visual projectile breath weapons.

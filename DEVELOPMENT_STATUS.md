@@ -19,7 +19,7 @@
 - Dragon bonding and saddle status are persisted in entity save data and restored on reload.
 - Passenger mounting and rider-controlled flight movement are implemented; pitch controls climb/descent and movement inputs steer the dragon.
 - Dragon owner and saddle state are persisted through Minecraft entity save/load hooks.
-- The incubating egg nest hatches the selected adult species after three incubation stages. Juvenile hatchling forms and dragon growth stages remain unimplemented.
+- The incubating egg nest hatches the selected adult species after three incubation stages. Hatchlings now emerge at 35% scale and grow to adult size over 72,000 game ticks; growth progress is persisted and uses the `dragonGrowthSpeed` config setting.
 - The eight stations still use the vanilla crafting-table interface; they do not have individual block entities, processing queues or gated custom menus.
 - Basic persistent kingdom teams are implemented through `/kingdom create <name>` and `/kingdom info`; diplomatic systems, invitations, settlements, NPCs and territory are not yet implemented.
 - Quests, structures, raids and scheduled world events are not implemented.
