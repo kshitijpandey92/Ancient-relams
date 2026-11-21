@@ -9,9 +9,13 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.scores.PlayerTeam;
 import net.minecraft.world.scores.Scoreboard;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public final class KingdomCommands {
-    private static final String INVITE_PREFIX = "ancientrealms_invite_";
+    private static final Map<UUID, String> INVITATIONS = new ConcurrentHashMap<>();
+    private static final Map<UUID, String> FOUNDERS = new ConcurrentHashMap<>();
 
     private KingdomCommands() {}
 
@@ -60,7 +64,7 @@ public final class KingdomCommands {
         team.setDisplayName(Component.literal(name));
         team.setAllowFriendlyFire(false);
         scoreboard.addPlayerToTeam(player.getScoreboardName(), team);
-        player.addTag(founderTag(name));
+        FOUNDERS.put(player.getUUID(), name);
         player.sendSystemMessage(Component.literal("Kingdom founded: " + name + ". You are its founder.")
             .withStyle(ChatFormatting.GOLD));
         return 1;
@@ -76,8 +80,8 @@ public final class KingdomCommands {
             inviter.sendSystemMessage(Component.literal(target.getName().getString() + " already belongs to a kingdom."));
             return 0;
         }
-        String tag = inviteTag(team.getName());
-        if (!target.addTag(tag)) {
+        String previous = INVITATIONS.putIfAbsent(target.getUUID(), team.getName());
+        if (previous != null) {
             inviter.sendSystemMessage(Component.literal("That player already has a pending invitation."));
             return 0;
         }
@@ -94,12 +98,12 @@ public final class KingdomCommands {
             return 0;
         }
         PlayerTeam team = scoreboard.getPlayerTeam(name);
-        if (team == null || !player.getTags().contains(inviteTag(name))) {
+        if (team == null || !name.equals(INVITATIONS.get(player.getUUID()))) {
             player.sendSystemMessage(Component.literal("No invitation found for that kingdom.")
                 .withStyle(ChatFormatting.RED));
             return 0;
         }
-        player.removeTag(inviteTag(name));
+        INVITATIONS.remove(player.getUUID());
         scoreboard.addPlayerToTeam(player.getScoreboardName(), team);
         player.sendSystemMessage(Component.literal("You joined kingdom " + name + "!")
             .withStyle(ChatFormatting.GOLD));
@@ -113,14 +117,14 @@ public final class KingdomCommands {
             return 0;
         }
         String name = team.getName();
-        if (player.getTags().contains(founderTag(name)) && team.getPlayers().size() > 1) {
+        if (name.equals(FOUNDERS.get(player.getUUID())) && team.getPlayers().size() > 1) {
             player.sendSystemMessage(Component.literal("As founder, transfer leadership before leaving. (Leadership transfer is not available yet.)")
                 .withStyle(ChatFormatting.RED));
             return 0;
         }
         scoreboard.removePlayerFromTeam(player.getScoreboardName(), team);
-        player.removeTag(founderTag(name));
-        player.removeTag(inviteTag(name));
+        FOUNDERS.remove(player.getUUID());
+        INVITATIONS.remove(player.getUUID());
         if (team.getPlayers().isEmpty()) scoreboard.removePlayerTeam(team);
         player.sendSystemMessage(Component.literal("You left kingdom " + name + "."));
         return 1;
@@ -132,17 +136,11 @@ public final class KingdomCommands {
             player.sendSystemMessage(Component.literal("You do not belong to a kingdom. Create one with /kingdom create <name>."));
             return 0;
         }
-        String role = player.getTags().contains(founderTag(team.getName())) ? "Founder" : "Member";
+        String role = team.getName().equals(FOUNDERS.get(player.getUUID())) ? "Founder" : "Member";
         player.sendSystemMessage(Component.literal("Kingdom: " + team.getName() + " | Role: " + role
             + " | Members: " + team.getPlayers().size()).withStyle(ChatFormatting.GOLD));
         return 1;
     }
 
-    private static String inviteTag(String kingdom) {
-        return INVITE_PREFIX + kingdom;
-    }
 
-    private static String founderTag(String kingdom) {
-        return "ancientrealms_founder_" + kingdom;
-    }
 }

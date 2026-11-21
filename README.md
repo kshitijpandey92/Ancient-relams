@@ -18,7 +18,7 @@ The project uses Fabric Loom split client/common source sets and declares the mo
 - Three distinct dragons: Ember, Frost and Storm, each with a custom animated multipart 3D model, elemental combat behavior and its own texture.
 - Bonding, treat-based healing, saddles, rider-controlled flight and incubating species-specific dragon eggs.
 - Eight themed crafting workstations using Minecraft's native 3x3 crafting interface.
-- Persistent scoreboard-based kingdoms with founder tracking, online invitations, joining, leaving and member inspection.
+- Persistent scoreboard-based kingdoms with online invitations, joining, leaving and member inspection; invitation/founder session state currently resets on server restart.
 - Dedicated creative tab and JSON configuration.
 
 ## Dragon summoning
