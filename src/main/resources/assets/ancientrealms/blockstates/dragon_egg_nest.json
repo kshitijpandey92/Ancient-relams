@@ -1,1 +1,19 @@
-{"variants":{"":{"model":"ancientrealms:block/dragon_egg_nest"}}}
+{
+  "variants": {
+    "age=0": {
+      "model": "ancientrealms:block/dragon_egg_nest"
+    },
+    "age=1": {
+      "model": "ancientrealms:block/dragon_egg_nest",
+      "y": 90
+    },
+    "age=2": {
+      "model": "ancientrealms:block/dragon_egg_nest",
+      "y": 180
+    },
+    "age=3": {
+      "model": "ancientrealms:block/dragon_egg_nest",
+      "y": 270
+    }
+  }
+}
