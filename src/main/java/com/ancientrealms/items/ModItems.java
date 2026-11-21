@@ -35,7 +35,7 @@ public final class ModItems {
     public static final Item ETERNAL_FRAGMENT = Registrar.item("eternal_fragment", Item::new);
     public static final Item DIVINE_ESSENCE = Registrar.item("divine_essence", Item::new);
     public static final Item ANCIENT_DRAGON_SCALE = Registrar.item("ancient_dragon_scale", Item::new);
-    public static final Item WORLD_CORE = Registrar.item("world_core", Item::new);
+    public static final Item WORLD_CORE = Registrar.item("world_core", Item::new);\n    public static final Item DRAGON_SADDLE = Registrar.item("dragon_saddle", Item::new);
 
     private ModItems() {}
 
@@ -65,7 +65,7 @@ public final class ModItems {
                 output.accept(ETERNAL_FRAGMENT);
                 output.accept(DIVINE_ESSENCE);
                 output.accept(ANCIENT_DRAGON_SCALE);
-                output.accept(WORLD_CORE);
+                output.accept(WORLD_CORE);\n                output.accept(DRAGON_SADDLE);
                 output.accept(StationBlocks.DRAGON_FORGE);
                 output.accept(StationBlocks.RUNE_ANVIL);
                 output.accept(StationBlocks.SOUL_ALTAR);
