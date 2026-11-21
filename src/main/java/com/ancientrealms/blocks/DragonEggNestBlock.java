@@ -46,6 +46,7 @@ public final class DragonEggNestBlock extends Block {
         };
         var dragon = type.create(level, EntitySpawnReason.TRIGGERED);
         if (dragon != null) {
+            dragon.setHatchling();
             dragon.setPos(pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5);
             if (level.addFreshEntity(dragon)) {
                 level.removeBlock(pos, false);
