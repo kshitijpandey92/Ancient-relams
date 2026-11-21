@@ -1,6 +1,7 @@
 package com.ancientrealms.entities;
 
 import com.ancientrealms.items.ModItems;
+import com.ancientrealms.config.ModConfig;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
@@ -134,7 +135,8 @@ public class DragonEntity extends PathfinderMob {
  @Override public void tick() {
   super.tick();
   if (!level().isClientSide() && growthTicks < MAX_GROWTH_TICKS) {
-   growthTicks = Math.min(MAX_GROWTH_TICKS, growthTicks + 1);
+   int growthStep = Math.max(1, (int) Math.round(ModConfig.get().dragonGrowthSpeed));
+   growthTicks = Math.min(MAX_GROWTH_TICKS, growthTicks + growthStep);
    if (growthTicks % 1200 == 0 || growthTicks == MAX_GROWTH_TICKS) applyGrowthScale();
   }
   if (elementalCooldown > 0) elementalCooldown--;
