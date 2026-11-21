@@ -1,6 +1,8 @@
 package com.ancientrealms.entities;
 import com.ancientrealms.registry.Registrar;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -16,6 +18,7 @@ public final class DragonTypes {
   ResourceKey<EntityType<?>> key=ResourceKey.create(Registries.ENTITY_TYPE,Registrar.id(name));
   EntityType<DragonEntity> type=Registry.register(BuiltInRegistries.ENTITY_TYPE,key,EntityType.Builder.<DragonEntity>of(DragonEntity::new,MobCategory.MONSTER).sized(4.8F,3.6F).clientTrackingRange(12).build(key));
   FabricDefaultAttributeRegistry.register(type,DragonEntity.createAttributes());
+  BiomeModifications.addSpawn(BiomeSelectors.foundInOverworld(),MobCategory.MONSTER,type,1,1,1);
   return type;
  }
  public static void initialize() {}
