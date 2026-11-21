@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "MHE",
+    " S "
+  ],
+  "key": {
+    "S": "ancientrealms:ancient_dragon_scale",
+    "M": "minecraft:melon_slice",
+    "H": "ancientrealms:dragon_heart",
+    "E": "minecraft:enchanted_golden_apple"
+  },
+  "result": {
+    "id": "ancientrealms:dragon_treat",
+    "count": 4
+  }
+}
