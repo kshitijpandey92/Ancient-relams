@@ -126,6 +126,27 @@ public class DragonEntity extends PathfinderMob {
   }
  }
 
+
+ @Override
+ protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput output) {
+  super.addAdditionalSaveData(output);
+  output.putBoolean("AncientRealmsSaddled", saddled);
+  if (bondedPlayer != null) output.putString("AncientRealmsBondedPlayer", bondedPlayer.toString());
+ }
+
+ @Override
+ protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput input) {
+  super.readAdditionalSaveData(input);
+  saddled = input.getBooleanOr("AncientRealmsSaddled", false);
+  String owner = input.getString("AncientRealmsBondedPlayer").orElse("");
+  try {
+   bondedPlayer = owner.isEmpty() ? null : java.util.UUID.fromString(owner);
+  } catch (IllegalArgumentException ignored) {
+   bondedPlayer = null;
+   saddled = false;
+  }
+ }
+
  @Override public boolean fireImmune() {
   return getType()==DragonTypes.EMBER_DRAGON || super.fireImmune();
  }
