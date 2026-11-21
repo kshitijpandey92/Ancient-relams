@@ -1,37 +1,24 @@
 # Development Status
 
-## Target and runtime support
-- Minecraft Java 26.2
-- Fabric only
-- Java 25
-- Mod ID: `ancientrealms`
-- Client and dedicated-server target: `environment: "*"` with Fabric Loom split common/client source sets.
-- Common/server gameplay code is in `src/main`; renderers and other client-only presentation code are in `src/client`.
-- The mod must be installed on both a dedicated server and each connecting client. Dedicated-server startup and multiplayer connection tests remain outstanding.
+## Target
+- Minecraft Java 26.2, Fabric Loader, Java 25.
+- Common gameplay code is in `src/main`; renderers are in `src/client`.
+- Mod environment is `*`; install the same mod build on the client and dedicated server.
 
-## Implemented in the repository
-- Gradle/Fabric Loom project, Java 25 and GitHub Actions build workflow.
-- Main/client entrypoints, JSON configuration, item/block registration and a dedicated creative tab.
-- Progression materials, four sword tiers and seven overworld ore types with world-generation data.
-- Rare natural Ember, Frost and Storm dragon egg nests are registered as overworld world-generation features; generated nests preserve their elemental species and follow the existing incubation/hatching lifecycle.
-- Three hostile dragon species with registered attributes, melee AI, custom multipart 3D models, animated wings/tails/legs and elemental combat strikes.
-- Dragon interaction loop: craft Dragon Treat, bond with a wild dragon, feed treats to restore 12 health, apply a Dragon Saddle and mount it as a passenger.
-- Placeable dragon egg items and an incubating nest block with Ember, Frost and Storm species selection; elemental egg crafting recipes; kingdom sigil and Dragon Treat items, recipes, models and progression advancements.
-- Eight themed station blocks with assets and native crafting-table interfaces.
-- Basic persistent kingdom teams through `/kingdom create <name>` and `/kingdom info`.
+## Implemented
+- Fabric project, client/common entrypoints, JSON configuration, item/block registration, creative tab, recipes, loot tables and advancements.
+- Seven custom overworld ore types and rare Ember, Frost and Storm egg-nest features.
+- Three dragon species with custom 3D models/textures, AI, elemental combat, bonding, treat healing, saddles, rider-controlled flight, saved ownership/growth and egg incubation.
+- Eight themed station blocks (currently use vanilla crafting-table menus).
+- Scoreboard-based kingdoms with create/info/invite/join/leave commands. Membership is saved by the world scoreboard; pending invitations and founder role tracking are currently in-memory and reset on server restart.
+- An automatically generated ruined stone keep structure in the overworld. It contains four corner towers, a gate, battlements, an inner dais, lights, a chest and two vanilla villager residents (weaponsmith and cleric). It is placed through the world-generation structure set in newly generated chunks.
 
-## Important limitations (not yet complete)
-- Dragon bonding and saddle status are persisted in entity save data and restored on reload.
-- Passenger mounting and rider-controlled flight movement are implemented; pitch controls climb/descent and movement inputs steer the dragon.
-- The incubating egg nest hatches the selected species after three incubation stages. Hatchlings emerge at 35% scale and grow to adult size over 72,000 game ticks; growth progress is persisted and uses the `dragonGrowthSpeed` config setting.
-- The eight stations still use the vanilla crafting-table interface; they do not have individual block entities, processing queues or gated custom menus.
-- Kingdom diplomacy, invitations, ranks, settlements, NPCs, territory and raids are not implemented.
-- Quests, structures, raids and scheduled world events are not implemented.
-- Many assets still use vanilla placeholder textures.
-- Compilation/package checks do not prove the mod starts on a dedicated server or works in a multiplayer world. Those runtime checks remain outstanding.
+## Still not complete or runtime-verified
+- Full kingdom simulation: saved leadership/ranks, diplomacy, claimed territory, NPC-specific guard/merchant/king AI, raids and wars.
+- Quest journal/objectives and story progression.
+- Custom station block entities, menus, timed processing, upgrades and progression gates.
+- Dragon armor, visible breath projectiles, juvenile model stages and richer flight AI.
+- Full castle/city/settlement variety, loot balancing, structures across every biome, polished custom textures/audio/particles.
+- Dedicated-server startup, client join, multiplayer synchronization, and in-game world-generation/hatching/flight testing have not been performed. A successful Gradle compile is not proof of these runtime behaviors.
 
-## Verification
-- Check the repository Actions tab for the current commit's Gradle build result.
-- A successful Gradle build is not equivalent to dedicated-server startup, client connection, or in-game gameplay verification.
-
-This is an actively developed mod build, not yet the full feature set originally requested.
+This repository is an active implementation and must not be described as the finished full-scope release until the remaining systems and runtime checks are complete.

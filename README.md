@@ -1,27 +1,19 @@
 # Ancient Realms: Rise of the Dragon Kingdoms
 
-A Fabric mod targeting Minecraft Java 26.2 and Java 25.
+Fabric mod targeting Minecraft Java 26.2 and Java 25.
 
-## Client and dedicated-server support
+## Installation target
+The mod is designed for both client and dedicated server. Install the same compatible mod build and required Fabric dependencies on the server and every connecting client. Common gameplay code is separated from client-only renderers.
 
-Ancient Realms is designed to run on both the Minecraft client and a dedicated Fabric server. Install the mod and its required Fabric dependencies on the server and on every connecting client using the same compatible mod version.
+## Current features
+- Seven progression ore types and elemental dragon-egg nests in overworld world generation.
+- Ember, Frost and Storm dragons with 3D models, textures, combat abilities, bonding, healing, saddles, flight and hatchling growth.
+- Rare automatically generated ruined keeps in newly generated overworld chunks, with corner towers, a gate, battlements, an inner dais, a chest, a weaponsmith and a cleric.
+- Eight themed crafting stations (currently vanilla crafting-table interfaces).
+- Scoreboard kingdoms with create, invite, join, leave and info commands.
+- Recipes, loot tables, advancements, configuration and a creative tab.
 
-- **Server/common side:** world generation, blocks, items, dragon entities and AI, kingdom data/commands, incubation, growth, combat and gameplay logic.
-- **Client side:** dragon models, textures, renderers, animation and other visual presentation.
-- **Multiplayer:** gameplay state is authoritative on the server and shared with connected clients.
-
-The project uses Fabric Loom split client/common source sets and declares the mod environment as `*`. Dedicated-server launch and multiplayer join testing are still required before claiming runtime verification.
-
-## Current content
-- 17 progression materials and four sword tiers.
-- Seven custom ores with overworld world-generation data, plus rare naturally generated dragon egg nests that can hatch Ember hatchlings.
-- Three distinct dragons: Ember, Frost and Storm, each with a custom animated multipart 3D model, elemental combat behavior and its own texture.
-- Bonding, treat-based healing, saddles, rider-controlled flight and incubating species-specific dragon eggs.
-- Eight themed crafting workstations using Minecraft's native 3x3 crafting interface.
-- Persistent scoreboard-based kingdoms with online invitations, joining, leaving and member inspection; invitation/founder session state currently resets on server restart.
-- Dedicated creative tab and JSON configuration.
-
-## Dragon summoning
+## Dragon commands
 ```
 /summon ancientrealms:ember_dragon
 /summon ancientrealms:frost_dragon
@@ -29,7 +21,7 @@ The project uses Fabric Loom split client/common source sets and declares the mo
 ```
 
 ## Build
-GitHub Actions builds the mod with Java 25. See the [Actions page](https://github.com/kshitijpandey92/Ancient-relams/actions) for the latest result and downloadable `ancientrealms-fabric-26.2` artifact.
+GitHub Actions builds the mod with Java 25. See the [Actions page](https://github.com/kshitijpandey92/Ancient-relams/actions) for the latest build and artifact.
 
-## Important scope note
-This is not yet the fully finished mod. Custom workstation processing/progression, complete kingdom diplomacy and settlements, NPCs, structures, quests, raids, full equipment sets, final assets, and in-game client/dedicated-server verification remain in development. See [DEVELOPMENT_STATUS.md](DEVELOPMENT_STATUS.md), [DRAGONS.md](DRAGONS.md), and [STATIONS.md](STATIONS.md).
+## Status
+This is not yet the finished full-scope release. Kingdom persistence beyond scoreboard membership, NPC AI, quests, diplomacy, raids/wars, custom station processing, additional structures, final assets, and dedicated-server/multiplayer in-game verification remain outstanding. See [DEVELOPMENT_STATUS.md](DEVELOPMENT_STATUS.md), [DRAGONS.md](DRAGONS.md), [KINGDOMS.md](KINGDOMS.md) and [STATIONS.md](STATIONS.md).
