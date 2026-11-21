@@ -17,6 +17,8 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.entity.MoverType;
+import net.minecraft.world.phys.Vec3;
 
 public class DragonEntity extends PathfinderMob {
  private int elementalCooldown = 0;
@@ -74,6 +76,32 @@ public class DragonEntity extends PathfinderMob {
    return InteractionResult.SUCCESS;
   }
   return super.mobInteract(player, hand);
+ }
+
+
+ @Override public LivingEntity getControllingPassenger() {
+  return getPassengers().isEmpty() ? null : (getPassengers().get(0) instanceof LivingEntity rider ? rider : null);
+ }
+
+ @Override public void travel(Vec3 travelVector) {
+  if (getControllingPassenger() instanceof Player rider) {
+   setNoGravity(true);
+   setYRot(rider.getYRot());
+   setXRot(rider.getXRot() * 0.5F);
+   float forward = rider.zza;
+   float strafe = rider.xxa;
+   double yaw = Math.toRadians(rider.getYRot());
+   double pitch = Math.toRadians(rider.getXRot());
+   double vx = (-Math.sin(yaw) * forward + Math.cos(yaw) * strafe) * 0.16;
+   double vz = ( Math.cos(yaw) * forward + Math.sin(yaw) * strafe) * 0.16;
+   double vy = -Math.sin(pitch) * forward * 0.16;
+   Vec3 velocity = getDeltaMovement().scale(0.78).add(vx, vy, vz);
+   setDeltaMovement(velocity);
+   move(MoverType.SELF, velocity);
+   return;
+  }
+  if (isNoGravity()) setNoGravity(false);
+  super.travel(travelVector);
  }
 
  @Override public void tick() {
