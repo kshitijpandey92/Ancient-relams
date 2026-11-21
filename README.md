@@ -1,30 +1,23 @@
 # Ancient Realms: Rise of the Dragon Kingdoms
 
-A Fabric mod project targeting Minecraft Java 26.2 and Java 25.
+A Fabric mod targeting Minecraft Java 26.2 and Java 25.
 
-**Mod ID:** `ancientrealms`  
-**Package:** `com.ancientrealms`
-
-## Current build
-
-The repository contains a buildable foundation and an expanding content implementation:
+## Current content
 - 17 progression materials and four sword tiers.
-- Seven registered ore blocks with models, loot tables, mining tags, and smelting recipes.
-- A dedicated Ancient Realms creative tab.
-- JSON configuration for progression-related tuning.
+- Seven custom ores with overworld world-generation data.
+- Three distinct hostile dragons: Ember, Frost and Storm, each with a custom animated multipart 3D model and its own texture.
+- Eight themed crafting workstations using Minecraft's native 3x3 crafting interface.
+- Dedicated creative tab and JSON configuration.
 
-**Important:** This is not yet the complete playable mod. Natural ore generation, eight functional crafting stations, full equipment/progression, original textures, dragons, kingdoms, and in-game verification remain outstanding. See [DEVELOPMENT_STATUS.md](DEVELOPMENT_STATUS.md) and [TODO_ASSETS.md](TODO_ASSETS.md).
-
-## Build and CI
-
-GitHub Actions builds the project with Java 25 and Gradle 9.8.0 on pushes and pull requests. Open the [Actions page](https://github.com/kshitijpandey92/Ancient-relams/actions) to see the latest build result and download the `ancientrealms-fabric-26.2` artifact when a run succeeds.
-
-If you have a Gradle installation in your development environment, run:
-
-```bash
-gradle build
+## Dragon summoning
+```
+/summon ancientrealms:ember_dragon
+/summon ancientrealms:frost_dragon
+/summon ancientrealms:storm_dragon
 ```
 
-## Project specification
+## Build
+GitHub Actions builds the mod with Java 25. See the [Actions page](https://github.com/kshitijpandey92/Ancient-relams/actions) for the latest result and downloadable `ancientrealms-fabric-26.2` artifact.
 
-See [MASTER_PROMPT.md](MASTER_PROMPT.md) for the intended complete feature scope.
+## Important scope note
+This is not yet the fully finished mod. Custom workstation processing/progression, dragon flight/riding/taming/growth, complete equipment sets, kingdoms, structures, quests, and in-game client/server verification remain in development. See [DEVELOPMENT_STATUS.md](DEVELOPMENT_STATUS.md), [DRAGONS.md](DRAGONS.md), and [STATIONS.md](STATIONS.md).
