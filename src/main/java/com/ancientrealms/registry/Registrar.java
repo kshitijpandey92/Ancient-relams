@@ -29,6 +29,17 @@ public final class Registrar {
   Registry.register(BuiltInRegistries.ITEM, id, blockItem);
   return block;
  }
+ public static Block customBlock(String path, Function<BlockBehaviour.Properties, Block> factory) {
+  Identifier id = id(path);
+  ResourceKey<Block> blockKey = ResourceKey.create(Registries.BLOCK, id);
+  Block block = factory.apply(BlockBehaviour.Properties.of().strength(3.0f, 6.0f).setId(blockKey));
+  Registry.register(BuiltInRegistries.BLOCK, id, block);
+  ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, id);
+  BlockItem item = new BlockItem(block, new Item.Properties().useBlockDescriptionPrefix().setId(itemKey));
+  Registry.register(BuiltInRegistries.ITEM, id, item);
+  return block;
+ }
+
  public static Block station(String path) {
   Identifier id = id(path);
   ResourceKey<Block> blockKey = ResourceKey.create(Registries.BLOCK, id);
