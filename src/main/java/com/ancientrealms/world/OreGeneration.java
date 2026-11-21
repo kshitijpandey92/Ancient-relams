@@ -17,14 +17,16 @@ public final class OreGeneration {
     private OreGeneration() {}
 
     public static void register() {
-        ResourceKey<PlacedFeature> dragonNest = ResourceKey.create(
-            Registries.PLACED_FEATURE, Registrar.id("dragon_nest")
-        );
-        BiomeModifications.addFeature(
-            BiomeSelectors.foundInOverworld(),
-            GenerationStep.Decoration.VEGETAL_DECORATION,
-            dragonNest
-        );
+        for (String nest : new String[] {"ember_dragon_nest", "frost_dragon_nest", "storm_dragon_nest"}) {
+            ResourceKey<PlacedFeature> dragonNest = ResourceKey.create(
+                Registries.PLACED_FEATURE, Registrar.id(nest)
+            );
+            BiomeModifications.addFeature(
+                BiomeSelectors.foundInOverworld(),
+                GenerationStep.Decoration.VEGETAL_DECORATION,
+                dragonNest
+            );
+        }
 
         for (String ore : ORES) {
             ResourceKey<PlacedFeature> key = ResourceKey.create(
