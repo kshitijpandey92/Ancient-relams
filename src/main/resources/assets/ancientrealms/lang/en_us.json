@@ -20,5 +20,12 @@
   "itemGroup.ancientrealms.main": "Ancient Realms",
   "item.ancientrealms.adamantite_sword": "Adamantite Sword",
   "item.ancientrealms.dragonsteel_sword": "Dragonsteel Sword",
-  "item.ancientrealms.celestial_gold_sword": "Celestial Gold Sword"
+  "item.ancientrealms.celestial_gold_sword": "Celestial Gold Sword",
+  "block.ancientrealms.mythril_ore": "Mythril Ore",
+  "block.ancientrealms.adamantite_ore": "Adamantite Ore",
+  "block.ancientrealms.dragonsteel_ore": "Dragonsteel Ore",
+  "block.ancientrealms.soulstone_ore": "Soulstone Ore",
+  "block.ancientrealms.void_crystal_ore": "Void Crystal Ore",
+  "block.ancientrealms.celestial_gold_ore": "Celestial Gold Ore",
+  "block.ancientrealms.blood_crystal_ore": "Blood Crystal Ore"
 }
