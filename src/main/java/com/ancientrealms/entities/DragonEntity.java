@@ -54,7 +54,7 @@ public class DragonEntity extends PathfinderMob {
    if (!player.getAbilities().instabuild) held.shrink(1);
    setTarget(null);
    getNavigation().stop();
-   player.displayClientMessage(net.minecraft.network.chat.Component.literal("Dragon saddled! Interact again to mount."), true);
+   player.sendSystemMessage(net.minecraft.network.chat.Component.literal("Dragon saddled! Interact again to mount."));
    return InteractionResult.SUCCESS;
   }
   if (saddled && getPassengers().isEmpty() && !player.isPassenger()) {
