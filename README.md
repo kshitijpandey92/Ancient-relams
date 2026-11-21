@@ -1,13 +1,21 @@
 # Ancient Realms: Rise of the Dragon Kingdoms
 
-Fabric mod targeting Minecraft Java 26.2 and Java 25.
+A Fabric mod for Minecraft Java 26.2, built with Java 25.
+
+**Mod ID:** `ancientrealms`  
+**Package:** `com.ancientrealms`
+
+## Project status
+This repository currently contains an early foundation scaffold. It is not yet a complete playable mod. See [DEVELOPMENT_STATUS.md](DEVELOPMENT_STATUS.md) for the verified state and [TODO_ASSETS.md](TODO_ASSETS.md) for missing art.
 
 ## Build
+Use the Gradle wrapper from the repository root:
 
-Run `./gradlew build`. Development launch tasks: `./gradlew runClient` and `./gradlew runServer`. The distributable JAR is created in `build/libs/`.
+```bash
+./gradlew build
+```
 
-## Phase 1 foundation
+The GitHub Actions workflow performs the same build on pushes and pull requests. CI currently uses Java 25 and Gradle 9.8.0 to satisfy the selected Fabric Loom plugin's minimum Gradle requirement.
 
-Entrypoints, JSON configuration, rarity tiers, Mythril Ingot and Mythril Sword registration, creative inventory entries, item model JSON, English names, and a starter crafting recipe. PNG textures are tracked in TODO_ASSETS.md.
-
-Build and runtime verification must be performed in Codespaces or CI. No successful build is claimed until the build has actually completed.
+## Development
+Read [MASTER_PROMPT.md](MASTER_PROMPT.md) for the full project scope and phase rules.
