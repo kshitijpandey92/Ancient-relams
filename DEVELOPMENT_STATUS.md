@@ -16,14 +16,15 @@
 - Eight themed station blocks with assets and native crafting-table interfaces.
 
 ## Important limitations (not yet complete)
-- Dragon bonding/saddle state is currently runtime-only and has not been made persistent across save/reload.
+- Dragon bonding and saddle status are persisted in entity save data and restored on reload.
 - Passenger mounting and rider-controlled flight movement are implemented; pitch controls climb/descent and movement inputs steer the dragon.
+- Dragon owner and saddle state are persisted through Minecraft entity save/load hooks.
 - Dragon egg is currently a craftable item; incubation, hatching, nests and growth stages are not implemented.
 - The eight stations still use the vanilla crafting-table interface; they do not have individual block entities, processing queues or gated custom menus.
 - Kingdom sigil is a progression/crafting item, not a complete faction, settlement or NPC kingdom simulation.
 - Quests, structures, raids and scheduled world events are not implemented.
 - Many assets still use vanilla placeholder textures.
-- No Minecraft client/server launch or in-world save/reload test has been performed.
+- The latest GitHub Actions Gradle build passed compilation and packaging. No Minecraft client/server launch or in-world save/reload test has been performed.
 
 ## Verification
 - GitHub Actions builds are used to verify compilation and packaging. Check the latest workflow run in the repository Actions tab for the current commit's result.
