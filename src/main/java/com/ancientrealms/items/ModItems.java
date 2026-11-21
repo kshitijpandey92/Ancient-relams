@@ -1,8 +1,6 @@
 package com.ancientrealms.items;
 
 import com.ancientrealms.registry.Registrar;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 
 public final class ModItems {
@@ -28,25 +26,6 @@ public final class ModItems {
     private ModItems() {}
 
     public static void initialize() {
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS).register(entries -> {
-            entries.accept(MYTHRIL_INGOT);
-            entries.accept(ADAMANTITE_INGOT);
-            entries.accept(DRAGONSTEEL_INGOT);
-            entries.accept(SOULSTONE);
-            entries.accept(VOID_CRYSTAL);
-            entries.accept(CELESTIAL_GOLD_INGOT);
-            entries.accept(BLOOD_CRYSTAL);
-            entries.accept(ANCIENT_ESSENCE);
-            entries.accept(FROST_CORE);
-            entries.accept(THUNDER_CORE);
-            entries.accept(INFERNAL_SHARD);
-            entries.accept(DRAGON_HEART);
-            entries.accept(CRYSTAL_DUST);
-            entries.accept(ETERNAL_FRAGMENT);
-            entries.accept(DIVINE_ESSENCE);
-            entries.accept(ANCIENT_DRAGON_SCALE);
-            entries.accept(WORLD_CORE);
-        });
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.COMBAT).register(entries -> entries.accept(MYTHRIL_SWORD));
+        // Items are registered during class initialization; recipes and the creative tab are data-driven.
     }
 }
