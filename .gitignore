@@ -1,0 +1,16 @@
+# Gradle
+.gradle/
+build/
+run/
+out/
+# IDE
+.idea/
+*.iml
+.vscode/
+# Logs
+*.log
+# Binary artifacts
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+.DS_Store
+Thumbs.db
