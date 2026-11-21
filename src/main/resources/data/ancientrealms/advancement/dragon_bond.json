@@ -1,0 +1,31 @@
+{
+  "display": {
+    "icon": {
+      "id": "ancientrealms:dragon_heart"
+    },
+    "title": {
+      "translate": "advancements.ancientrealms.dragon_bond.title"
+    },
+    "description": {
+      "translate": "advancements.ancientrealms.dragon_bond.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "heart": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ancientrealms:dragon_heart"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
