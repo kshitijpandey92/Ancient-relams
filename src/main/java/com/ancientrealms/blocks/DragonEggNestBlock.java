@@ -28,7 +28,7 @@ public final class DragonEggNestBlock extends Block {
 
     @Override
     protected boolean isRandomlyTicking(BlockState state) {
-        return state.getValue(AGE) < 3;
+        return true;
     }
 
     @Override
