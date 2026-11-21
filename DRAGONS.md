@@ -1,16 +1,27 @@
 # Ancient Realms Dragons
 
-Three dragon species are registered and have distinct 128x128 pixel-art skins:
+Three dragon species are registered with distinct textures and custom multipart 3D models. Their bodies, necks, heads, horns, snouts, tails, legs and independently animated wings are rendered client-side.
 
-- **Ember Dragon:** immune to fire; its elemental pulse ignites nearby targets.
-- **Frost Dragon:** its elemental pulse builds freeze on nearby targets.
-- **Storm Dragon:** its elemental pulse launches nearby targets with knockback.
+- **Ember Dragon:** fire immune; elemental strike deals damage and ignites its target.
+- **Frost Dragon:** elemental strike deals damage and increases the target's freeze time.
+- **Storm Dragon:** elemental strike deals damage and knocks the target back.
 
-Each species uses a custom multipart 3D model with a body, neck, head, horns, snout, four legs, long tail and two independently animated wings. All have 180 health, 14 armor, 18 melee damage, 56-block follow range and hostile AI. They are also registered as rare overworld monster spawns.
+All three have hostile AI, 180 health, 14 armor, 18 melee damage, 56-block follow range and rare overworld monster spawns.
 
-Summon manually:
+## Taming and riding
+1. Defeat dragons to obtain their species' core and dragon scales.
+2. Craft Dragon Treats using a dragon heart, ancient scales, melon and an enchanted golden apple.
+3. Hold a Dragon Treat and interact with a wild dragon to bond with it.
+4. Hold a Dragon Saddle and interact with your bonded dragon.
+5. Interact again to mount it. Only the bonded player can saddle and mount it.
+
+## Flight controls
+While mounted, use normal movement keys to steer forward/back and strafe. Look up to climb and down to descend. Rider-controlled flight movement is implemented and the latest Gradle compile/package step passed.
+
+## Summon commands
 - `/summon ancientrealms:ember_dragon`
 - `/summon ancientrealms:frost_dragon`
 - `/summon ancientrealms:storm_dragon`
 
-This is the first playable dragon combat milestone, not a complete dragon-riding system. True flight/navigation, breath projectiles, taming/riding, growth stages, nests/eggs, dragon loot and kingdom systems remain outstanding.
+## Still in development
+Dragon bonding and saddle ownership are not yet persisted across save/reload. Eggs are currently craftable items, not incubating blocks; hatchling growth, nests, breath projectiles, advanced flight AI and dragon armor are not yet implemented. Elemental attacks are direct combat pulses, not visual projectile breath weapons.
