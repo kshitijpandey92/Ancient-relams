@@ -47,7 +47,11 @@ public class DragonEntity extends PathfinderMob {
   goalSelector.addGoal(3,new LookAtPlayerGoal(this,Player.class,32.0F));
   goalSelector.addGoal(4,new RandomLookAroundGoal(this));
   targetSelector.addGoal(1,new HurtByTargetGoal(this));
-  targetSelector.addGoal(2,new NearestAttackableTargetGoal<>(this,Player.class,true));
+  targetSelector.addGoal(2,new NearestAttackableTargetGoal<>(this,Player.class,true) {
+   @Override public boolean canUse() {
+    return bondedPlayer == null && super.canUse();
+   }
+  });
  }
 
  @Override public InteractionResult mobInteract(Player player, InteractionHand hand) {
