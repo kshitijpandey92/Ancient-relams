@@ -12,6 +12,8 @@ public final class ModBlocks {
     public static final Block CELESTIAL_GOLD_ORE = Registrar.block("celestial_gold_ore");
     public static final Block BLOOD_CRYSTAL_ORE = Registrar.block("blood_crystal_ore");
 
+    public static final Block DRAGON_EGG_NEST = Registrar.customBlock("dragon_egg_nest", DragonEggNestBlock::new);
+
     private ModBlocks() {}
 
     public static void initialize() {
