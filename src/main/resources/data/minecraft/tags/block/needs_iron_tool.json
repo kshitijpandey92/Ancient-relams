@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "ancientrealms:mythril_ore",
+    "ancientrealms:adamantite_ore",
+    "ancientrealms:dragonsteel_ore",
+    "ancientrealms:soulstone_ore",
+    "ancientrealms:void_crystal_ore",
+    "ancientrealms:celestial_gold_ore",
+    "ancientrealms:blood_crystal_ore"
+  ]
+}
