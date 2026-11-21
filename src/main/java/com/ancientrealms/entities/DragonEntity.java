@@ -82,13 +82,16 @@ public class DragonEntity extends PathfinderMob {
   LivingEntity target = getTarget();
   if (!level().isClientSide() && target != null && distanceToSqr(target) < 225.0 && elementalCooldown == 0) {
    if (getType() == DragonTypes.EMBER_DRAGON) {
-    target.hurt(damageSources().mobAttack(this), 8.0F);\n    target.igniteForSeconds(6.0F);
+    target.hurt(damageSources().mobAttack(this), 8.0F);
+    target.igniteForSeconds(6.0F);
    } else if (getType() == DragonTypes.FROST_DRAGON) {
-    target.hurt(damageSources().mobAttack(this), 8.0F);\n    target.setTicksFrozen(Math.min(300, target.getTicksFrozen() + 100));
+    target.hurt(damageSources().mobAttack(this), 8.0F);
+    target.setTicksFrozen(Math.min(300, target.getTicksFrozen() + 100));
    } else {
     double dx = target.getX() - getX();
     double dz = target.getZ() - getZ();
-    target.hurt(damageSources().mobAttack(this), 8.0F);\n    target.push(dx * 0.12, 0.8, dz * 0.12);
+    target.hurt(damageSources().mobAttack(this), 8.0F);
+    target.push(dx * 0.12, 0.8, dz * 0.12);
    }
    elementalCooldown = 100;
   }
