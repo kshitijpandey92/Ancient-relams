@@ -45,7 +45,7 @@ public class DragonEntity extends PathfinderMob {
   goalSelector.addGoal(3,new LookAtPlayerGoal(this,Player.class,32.0F));
   goalSelector.addGoal(4,new RandomLookAroundGoal(this));
   targetSelector.addGoal(1,new HurtByTargetGoal(this));
-  targetSelector.addGoal(2,new NearestAttackableTargetGoal<>(this,Player.class,10,true,false, player -> bondedPlayer == null || !player.getUUID().equals(bondedPlayer)));
+  targetSelector.addGoal(2,new NearestAttackableTargetGoal<>(this,Player.class,true));
  }
 
  @Override public InteractionResult mobInteract(Player player, InteractionHand hand) {
@@ -65,7 +65,7 @@ public class DragonEntity extends PathfinderMob {
    player.sendSystemMessage(net.minecraft.network.chat.Component.literal("Dragon saddled! Interact again to mount."));
    return InteractionResult.SUCCESS;
   }
-  if (saddled && getPassengers().isEmpty() && !player.isPassenger()) {
+  if (saddled && bondedPlayer != null && bondedPlayer.equals(player.getUUID()) && getPassengers().isEmpty() && !player.isPassenger()) {
    if (!level().isClientSide()) {
     setTarget(null);
     getNavigation().stop();
@@ -80,6 +80,7 @@ public class DragonEntity extends PathfinderMob {
   super.tick();
   if (elementalCooldown > 0) elementalCooldown--;
   LivingEntity target = getTarget();
+  if (target != null && bondedPlayer != null && target.getUUID().equals(bondedPlayer)) { setTarget(null); target = null; }
   if (!level().isClientSide() && target != null && distanceToSqr(target) < 225.0 && elementalCooldown == 0) {
    if (getType() == DragonTypes.EMBER_DRAGON) {
     target.hurt(damageSources().mobAttack(this), 8.0F);
