@@ -30,7 +30,7 @@ public final class KingdomCommands {
             player.sendSystemMessage(Component.literal("Kingdom names must be 3-16 letters, numbers or underscores."));
             return 0;
         }
-        Scoreboard scoreboard = player.getServer().getScoreboard();
+        Scoreboard scoreboard = player.serverLevel().getServer().getScoreboard();
         if (scoreboard.getPlayersTeam(player.getScoreboardName()) != null) {
             player.sendSystemMessage(Component.literal("You already belong to a kingdom.").withStyle(ChatFormatting.RED));
             return 0;
@@ -41,7 +41,6 @@ public final class KingdomCommands {
         }
         PlayerTeam team = scoreboard.addPlayerTeam(name);
         team.setDisplayName(Component.literal(name));
-        team.setColor(ChatFormatting.GOLD);
         team.setAllowFriendlyFire(false);
         scoreboard.addPlayerToTeam(player.getScoreboardName(), team);
         player.sendSystemMessage(Component.literal("Kingdom founded: " + name + ". Your kingdom is saved with this world.").withStyle(ChatFormatting.GOLD));
