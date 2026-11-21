@@ -24,4 +24,4 @@ While mounted, use normal movement keys to steer forward/back and strafe. Look u
 - `/summon ancientrealms:storm_dragon`
 
 ## Still in development
-Dragon ownership and saddle status are saved with the dragon and restored when the world reloads. Eggs are currently craftable items, not incubating blocks; hatchling growth, nests, breath projectiles, advanced flight AI and dragon armor are not yet implemented. Elemental attacks are direct combat pulses, not visual projectile breath weapons.
+Dragon ownership and saddle status are saved with the dragon and restored when the world reloads. The bonded owner can also heal the dragon by feeding it Dragon Treats (12 health per treat). Eggs are currently craftable items, not incubating blocks; hatchling growth, nests, breath projectiles, advanced flight AI and dragon armor are not yet implemented. Elemental attacks are direct combat pulses, not visual projectile breath weapons.
