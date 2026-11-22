@@ -109,5 +109,6 @@ jobs:
             if ! git diff --cached --quiet; then
               git commit -m "Add Gradle 9.8 wrapper"
               git push
+              gh workflow run build.yml --ref main
             fi
           fi
