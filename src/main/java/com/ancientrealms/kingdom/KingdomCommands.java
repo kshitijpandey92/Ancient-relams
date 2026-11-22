@@ -9,15 +9,38 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.scores.PlayerTeam;
 import net.minecraft.world.scores.Scoreboard;
-import java.util.Map;
+
+import java.util.Set;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 
 public final class KingdomCommands {
-    private static final Map<UUID, String> INVITATIONS = new ConcurrentHashMap<>();
-    private static final Map<UUID, String> FOUNDERS = new ConcurrentHashMap<>();
+    // Scoreboard entries are persisted by Minecraft with the world scoreboard.
+    // Reserved fake-player entries store kingdom metadata without an in-memory map.
+    private static final String INVITE_PREFIX = "#ari";
+    private static final String OWNER_PREFIX = "#aro";
+    private static final String WAR_PREFIX = "#arw";
 
     private KingdomCommands() {}
+
+    private static String marker(String prefix, UUID id) {
+        return prefix + id.toString().replace("-", "");
+    }
+
+    private static String warMarker(String otherTeam) {
+        return WAR_PREFIX + otherTeam;
+    }
+
+    private static boolean isMetadata(String entry) {
+        return entry.startsWith("#ar");
+    }
+
+    private static int realMemberCount(PlayerTeam team) {
+        return (int) team.getPlayers().stream().filter(p -> !isMetadata(p)).count();
+    }
+
+    private static boolean isOwner(PlayerTeam team, UUID id) {
+        return team.getPlayers().contains(marker(OWNER_PREFIX, id));
+    }
 
     public static void register() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) ->
@@ -43,6 +66,21 @@ public final class KingdomCommands {
                 .then(Commands.literal("leave")
                     .executes(context -> leave(context.getSource().getPlayerOrException(),
                         context.getSource().getServer().getScoreboard())))
+                .then(Commands.literal("transfer")
+                    .then(Commands.argument("player", EntityArgument.player())
+                        .executes(context -> transfer(context.getSource().getPlayerOrException(),
+                            EntityArgument.getPlayer(context, "player"),
+                            context.getSource().getServer().getScoreboard()))))
+                .then(Commands.literal("declare-war")
+                    .then(Commands.argument("kingdom", StringArgumentType.word())
+                        .executes(context -> setWar(context.getSource().getPlayerOrException(),
+                            context.getSource().getServer().getScoreboard(),
+                            StringArgumentType.getString(context, "kingdom"), true))))
+                .then(Commands.literal("peace")
+                    .then(Commands.argument("kingdom", StringArgumentType.word())
+                        .executes(context -> setWar(context.getSource().getPlayerOrException(),
+                            context.getSource().getServer().getScoreboard(),
+                            StringArgumentType.getString(context, "kingdom"), false))))
             )
         );
     }
@@ -64,28 +102,30 @@ public final class KingdomCommands {
         team.setDisplayName(Component.literal(name));
         team.setAllowFriendlyFire(false);
         scoreboard.addPlayerToTeam(player.getScoreboardName(), team);
-        FOUNDERS.put(player.getUUID(), name);
-        player.sendSystemMessage(Component.literal("Kingdom founded: " + name + ". You are its founder.")
+        scoreboard.addPlayerToTeam(marker(OWNER_PREFIX, player.getUUID()), team);
+        player.sendSystemMessage(Component.literal("Kingdom founded: " + name + ". You are its leader.")
             .withStyle(ChatFormatting.GOLD));
         return 1;
     }
 
     private static int invite(ServerPlayer inviter, ServerPlayer target, Scoreboard scoreboard) {
         PlayerTeam team = scoreboard.getPlayersTeam(inviter.getScoreboardName());
-        if (team == null) {
-            inviter.sendSystemMessage(Component.literal("Create or join a kingdom before inviting players."));
+        if (team == null || !isOwner(team, inviter.getUUID())) {
+            inviter.sendSystemMessage(Component.literal("Only your kingdom leader can invite players.")
+                .withStyle(ChatFormatting.RED));
             return 0;
         }
         if (scoreboard.getPlayersTeam(target.getScoreboardName()) != null) {
             inviter.sendSystemMessage(Component.literal(target.getName().getString() + " already belongs to a kingdom."));
             return 0;
         }
-        String previous = INVITATIONS.putIfAbsent(target.getUUID(), team.getName());
-        if (previous != null) {
+        String invite = marker(INVITE_PREFIX, target.getUUID());
+        if (team.getPlayers().contains(invite)) {
             inviter.sendSystemMessage(Component.literal("That player already has a pending invitation."));
             return 0;
         }
-        inviter.sendSystemMessage(Component.literal("Invitation sent to " + target.getName().getString() + ".")
+        scoreboard.addPlayerToTeam(invite, team);
+        inviter.sendSystemMessage(Component.literal("Invitation saved for " + target.getName().getString() + ".")
             .withStyle(ChatFormatting.GREEN));
         target.sendSystemMessage(Component.literal("You were invited to " + team.getName()
             + ". Join with /kingdom join " + team.getName() + ".").withStyle(ChatFormatting.GOLD));
@@ -98,15 +138,61 @@ public final class KingdomCommands {
             return 0;
         }
         PlayerTeam team = scoreboard.getPlayerTeam(name);
-        if (team == null || !name.equals(INVITATIONS.get(player.getUUID()))) {
-            player.sendSystemMessage(Component.literal("No invitation found for that kingdom.")
+        String invite = marker(INVITE_PREFIX, player.getUUID());
+        if (team == null || !team.getPlayers().contains(invite)) {
+            player.sendSystemMessage(Component.literal("No saved invitation found for that kingdom.")
                 .withStyle(ChatFormatting.RED));
             return 0;
         }
-        INVITATIONS.remove(player.getUUID());
+        scoreboard.removePlayerFromTeam(invite, team);
         scoreboard.addPlayerToTeam(player.getScoreboardName(), team);
         player.sendSystemMessage(Component.literal("You joined kingdom " + name + "!")
             .withStyle(ChatFormatting.GOLD));
+        return 1;
+    }
+
+    private static int transfer(ServerPlayer leader, ServerPlayer target, Scoreboard scoreboard) {
+        PlayerTeam team = scoreboard.getPlayersTeam(leader.getScoreboardName());
+        if (team == null || !isOwner(team, leader.getUUID())) {
+            leader.sendSystemMessage(Component.literal("Only the current leader can transfer leadership."));
+            return 0;
+        }
+        if (scoreboard.getPlayersTeam(target.getScoreboardName()) != team) {
+            leader.sendSystemMessage(Component.literal("The new leader must already be a member of your kingdom."));
+            return 0;
+        }
+        scoreboard.removePlayerFromTeam(marker(OWNER_PREFIX, leader.getUUID()), team);
+        scoreboard.addPlayerToTeam(marker(OWNER_PREFIX, target.getUUID()), team);
+        leader.sendSystemMessage(Component.literal("Leadership transferred to " + target.getName().getString() + "."));
+        target.sendSystemMessage(Component.literal("You are now the leader of " + team.getName() + ".")
+            .withStyle(ChatFormatting.GOLD));
+        return 1;
+    }
+
+    private static int setWar(ServerPlayer player, Scoreboard scoreboard, String otherName, boolean declare) {
+        PlayerTeam own = scoreboard.getPlayersTeam(player.getScoreboardName());
+        PlayerTeam other = scoreboard.getPlayerTeam(otherName);
+        if (own == null || !isOwner(own, player.getUUID())) {
+            player.sendSystemMessage(Component.literal("Only a kingdom leader can change diplomacy."));
+            return 0;
+        }
+        if (other == null || other == own) {
+            player.sendSystemMessage(Component.literal("Choose a different existing kingdom."));
+            return 0;
+        }
+        String ownMarker = warMarker(own.getName());
+        String otherMarker = warMarker(other.getName());
+        if (declare) {
+            scoreboard.addPlayerToTeam(otherMarker, own);
+            scoreboard.addPlayerToTeam(ownMarker, other);
+            player.sendSystemMessage(Component.literal("Your kingdom has declared war on " + other.getName() + ".")
+                .withStyle(ChatFormatting.RED));
+        } else {
+            scoreboard.removePlayerFromTeam(otherMarker, own);
+            scoreboard.removePlayerFromTeam(ownMarker, other);
+            player.sendSystemMessage(Component.literal("Peace declared with " + other.getName() + ".")
+                .withStyle(ChatFormatting.GREEN));
+        }
         return 1;
     }
 
@@ -116,17 +202,16 @@ public final class KingdomCommands {
             player.sendSystemMessage(Component.literal("You are not in a kingdom."));
             return 0;
         }
-        String name = team.getName();
-        if (name.equals(FOUNDERS.get(player.getUUID())) && team.getPlayers().size() > 1) {
-            player.sendSystemMessage(Component.literal("As founder, transfer leadership before leaving. (Leadership transfer is not available yet.)")
+        if (isOwner(team, player.getUUID()) && realMemberCount(team) > 1) {
+            player.sendSystemMessage(Component.literal("Transfer leadership before leaving your kingdom.")
                 .withStyle(ChatFormatting.RED));
             return 0;
         }
         scoreboard.removePlayerFromTeam(player.getScoreboardName(), team);
-        FOUNDERS.remove(player.getUUID());
-        INVITATIONS.remove(player.getUUID());
-        if (team.getPlayers().isEmpty()) scoreboard.removePlayerTeam(team);
-        player.sendSystemMessage(Component.literal("You left kingdom " + name + "."));
+        scoreboard.removePlayerFromTeam(marker(OWNER_PREFIX, player.getUUID()), team);
+        scoreboard.removePlayerFromTeam(marker(INVITE_PREFIX, player.getUUID()), team);
+        if (realMemberCount(team) == 0) scoreboard.removePlayerTeam(team);
+        player.sendSystemMessage(Component.literal("You left kingdom " + team.getName() + "."));
         return 1;
     }
 
@@ -136,11 +221,12 @@ public final class KingdomCommands {
             player.sendSystemMessage(Component.literal("You do not belong to a kingdom. Create one with /kingdom create <name>."));
             return 0;
         }
-        String role = team.getName().equals(FOUNDERS.get(player.getUUID())) ? "Founder" : "Member";
+        String role = isOwner(team, player.getUUID()) ? "Leader" : "Member";
+        Set<String> entries = team.getPlayers();
+        long wars = entries.stream().filter(e -> e.startsWith(WAR_PREFIX)).count();
         player.sendSystemMessage(Component.literal("Kingdom: " + team.getName() + " | Role: " + role
-            + " | Members: " + team.getPlayers().size()).withStyle(ChatFormatting.GOLD));
+            + " | Members: " + realMemberCount(team) + " | Active wars: " + wars)
+            .withStyle(ChatFormatting.GOLD));
         return 1;
     }
-
-
 }
