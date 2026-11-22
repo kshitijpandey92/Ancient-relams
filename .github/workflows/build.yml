@@ -32,6 +32,31 @@ jobs:
           gradle-version: '9.8.0'
       - name: Build mod
         run: gradle build --no-daemon
+      - name: Smoke-test dedicated server startup and datapack loading
+        run: |
+          mkdir -p run/server
+          printf 'eula=true\\n' > run/server/eula.txt
+          printf 'eula=true\\n' > run/eula.txt
+          set +e
+          timeout --signal=INT --kill-after=20s 150s gradle runServer --no-daemon --console=plain
+          server_status=$?
+          set -e
+          if [ "$server_status" -ne 124 ] && [ "$server_status" -ne 130 ]; then
+            echo "Dedicated server exited before the smoke-test timeout (status $server_status)."
+            exit "$server_status"
+          fi
+          server_log="$(find run -path '*/logs/latest.log' -print -quit)"
+          if [ -z "$server_log" ]; then
+            echo "Dedicated server did not produce a latest.log."
+            find run -maxdepth 4 -type f -print || true
+            exit 1
+          fi
+          if ! grep -Fq 'Done (' "$server_log"; then
+            echo "Dedicated server did not finish startup. Log follows:"
+            cat "$server_log"
+            exit 1
+          fi
+          echo "Dedicated server reached the ready state: $server_log"
       - name: Upload mod jar
         if: success()
         uses: actions/upload-artifact@v4
