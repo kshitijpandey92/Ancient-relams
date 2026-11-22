@@ -5,7 +5,9 @@
     "discard_chance_on_air_exposure": 0,
     "targets": [
       {
-        "state": "ancientrealms:dragonsteel_ore",
+        "state": {
+          "Name": "ancientrealms:dragonsteel_ore"
+        },
         "target": {
           "predicate_type": "minecraft:tag_match",
           "tag": "minecraft:base_stone_nether"
