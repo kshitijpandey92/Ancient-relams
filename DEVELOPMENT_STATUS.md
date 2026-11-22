@@ -1,53 +1,45 @@
 # Development Status — Ancient Realms
 
-## Target and project constraints
-- Minecraft Java 26.2; Fabric only; Java 25.
-- Mod ID: `ancientrealms`; package: `com.ancientrealms`.
-- Common gameplay code: `src/main`; client renderers: `src/client`.
-- The mod metadata declares environment `*`; dedicated-server compatibility still requires runtime verification.
-- Do not commit Minecraft/Mojang jars or Gradle caches.
+## Target
+Minecraft Java 26.2, Fabric only, Java 25. Mod ID `ancientrealms`, package `com.ancientrealms`.
 
-## Verified in the latest CI run
-- GitHub Actions run [#45000210459](https://github.com/kshitijpandey92/Ancient-relams/actions/runs/45000210459) completed successfully.
-- Python resource validation passed, including JSON syntax, structure/template references, and generated compressed NBT checks.
-- Gradle build passed on Java 25.
-- Artifact `ancientrealms-fabric-26.2` was uploaded (111,785 bytes).
-- This verifies resource checks and compilation only. It does not verify client startup, dedicated-server startup, world loading, or multiplayer behavior.
+## Verified repository CI
+- Commit `829c63c9134b97446986fd915bae4138ce1c1844`: resource validation and Gradle build passed on GitHub Actions.
+- The build workflow now generates fallback pixel-art PNGs before packaging, generates the royal castle structure, validates resources and compiles the mod.
+- This is compile/resource validation only. No Minecraft client, dedicated-server, save/reload, or multiplayer runtime test has been performed.
 
-## Implemented, but not fully runtime-verified
-- Fabric main/client entrypoints, registrar helper, JSON configuration, rarity enum and creative tab.
-- 17 named material items and seven ore block/resource definitions.
-- Mythril and Adamantite are registered for Overworld generation. Dragonsteel, Soulstone, Void Crystal, Celestial Gold and Blood Crystal are intentionally not placed in the Overworld pending their future dimensions.
-- Ember, Frost and Storm dragons with models/textures, AI, elemental attacks, bonding, treat healing, saddles, rider-controlled flight, growth and egg nests.
-- Ruined keep and royal castle structure resources; royal castle NBT is generated during CI.
-- Eight themed stations exist as blocks but currently open vanilla crafting interfaces.
-- Scoreboard kingdoms support create/info/invite/join/leave; invitations and founder role state are in-memory and do not survive a restart.
+## Implemented features (runtime behavior still needs in-game verification)
+- Fabric main/client entrypoints, registrar helper, JSON configuration, weapon rarity enum and creative tab.
+- Dragon species Ember, Frost and Storm with models/textures, AI, elemental attacks, bonding, saddle/riding/flight, growth and egg nests.
+- Seven ore block/resource definitions; only Mythril and Adamantite are registered for Overworld generation.
+- Ruined keep and royal castle structure resources; royal castle NBT is generated in CI.
+- Eight themed crafting station blocks, currently using vanilla crafting-table behavior.
+- Scoreboard-backed kingdom membership commands. Invitation and founder session state are in-memory and reset on restart.
+- Materials, swords, recipes, loot tables, advancements and config.
 
 ## 15-part completion checklist
-- [x] 1. Repository source scaffold and Fabric metadata exist (repository privacy/name and local CLI setup do not match the requested setup; see gaps below).
-- [ ] 2. Exact pinned toolchain and Gradle wrapper: requested Loader 0.19.1, Fabric API 0.150.1+26.2, Loom 1.15.x and Gradle wrapper 9.3 are not the current repository settings.
-- [ ] 3. Phase 1 foundation: entrypoints, registrar, config, rarity and creative tab need source-jar/API verification against the requested exact pins.
-- [ ] 4. Phase 1 Mythril assets: item definition JSON and custom Mythril item textures are missing; models alone are not enough.
-- [ ] 5. Phase 1 client launch and dedicated-server launch have not been run or inspected.
-- [ ] 6. Complete material variants: raw forms, nuggets and suitable storage blocks are not complete.
-- [ ] 7. Seven ore loot tables, tags, models, blockstates and texture coverage need a complete audit against the required exact list.
-- [ ] 8. Dimension-specific world generation for the five higher-tier ores is not implemented.
-- [ ] 9. Eight required station identities and their block behavior do not yet match the requested Ancient Forge, Dragon Forge, Elemental Altar, Soul Infuser, Celestial Anvil, Dragon Egg Incubator, Legendary Weapon Altar and Ancient Enchantment Table.
-- [ ] 10. Station block entities, menus, screens, recipe types and server-side processing are not implemented.
-- [ ] 11. Tier-gated progression recipes and recipe advancements are incomplete.
-- [ ] 12. Full custom item/block textures and mod icon are missing; see `TODO_ASSETS.md`.
-- [ ] 13. Persistent kingdom leadership/invitations, NPCs, quests, diplomacy, raids and wars are incomplete.
-- [ ] 14. Dragon armor, visible breath projectiles, advanced dragon stages and full world-event systems are incomplete.
-- [ ] 15. Full client/server startup, save/reload, new-world generation, multiplayer synchronization and in-game testing remain outstanding.
+- [x] 1. Existing repository scaffold and Fabric metadata.
+- [ ] 2. Requested private repository named `ancientrealms`, exact pinned toolchain, and committed Gradle 9.3 wrapper.
+- [ ] 3. Phase 1 foundation verified against sources for the exact requested pins.
+- [ ] 4. Complete Phase 1 Mythril item definition/recipe/repair tag and final custom art audit.
+- [ ] 5. Client launch and dedicated-server launch tests with logs.
+- [ ] 6. All 17 materials plus raw forms, nuggets and storage blocks where appropriate.
+- [ ] 7. Seven ores with complete loot, mining tags, blockstates, models, textures and recipes.
+- [ ] 8. Five higher-tier ores assigned to future dimensions/biomes; Overworld limited to Mythril and Adamantite.
+- [ ] 9. Eight requested station identities and block behaviors.
+- [ ] 10. Eight station block entities, menus/screens, recipe types and server-side processing.
+- [ ] 11. Tier-gated progression recipes and recipe advancements.
+- [ ] 12. Bespoke textures, models and icon; generated fallback textures are not final art.
+- [ ] 13. Persistent kingdom leadership/invitations, NPCs, quests, diplomacy, raids and wars.
+- [ ] 14. Dragon armor, visible breath projectiles, full progression/equipment and world events.
+- [ ] 15. In-game world generation, save/reload, dedicated server and multiplayer verification.
 
-## Repository/setup mismatches
-- Existing repository is `kshitijpandey92/Ancient-relams`, and GitHub currently reports it as **public**; requested name/visibility were `ancientrealms` and private.
-- No `gradle/wrapper/gradle-wrapper.jar` or wrapper properties are currently committed.
-- Current `gradle.properties` pins Loader 0.20.1, Fabric API 0.161.0+26.2 and Loom 1.19-SNAPSHOT, not the requested values.
-- Local `git --version`, `gh --version`, `gh auth status` and local `java -version` cannot be inferred from a GitHub Actions build.
+## Repository setup mismatches
+- Repository is `kshitijpandey92/Ancient-relams` and GitHub reports visibility as public, not the requested private `ancientrealms`.
+- Gradle wrapper files are absent.
+- Current properties are Loader 0.20.1, Fabric API 0.161.0+26.2 and Loom 1.19-SNAPSHOT; requested pins are Loader 0.19.1, Fabric API 0.150.1+26.2 and Loom 1.15.x.
+- GitHub Actions build environment does not prove local `git`, `gh`, authentication or local Java versions.
+- The user-provided MASTER_PROMPT.md remains the controlling feature specification.
 
-## Known limitations and next work
-- A successful Gradle build is not proof that Minecraft accepts every datapack structure schema or that the structures spawn in game.
-- Stations are crafting-table-interface placeholders, not functional processing machines.
-- Add missing custom assets, exact-version wrapper and dependencies only with a clean compatibility test; do not silently change the requested Minecraft version.
-- Run `runClient` and `runServer` in a suitable environment, inspect their logs, then test new-world generation and multiplayer before marking runtime features complete.
+## Next work
+Implement functional station processing and durable kingdom data only after verifying exact target APIs. Test the mod in Minecraft before claiming runtime success.

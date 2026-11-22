@@ -1,42 +1,22 @@
 # Art and Asset Checklist
 
-## Missing custom item textures
-The repository currently has dragon entity textures, but the custom item textures below are still absent. Until supplied, item models that reference these paths will show missing-texture placeholders.
+## Generated fallback assets
+The CI workflow runs `python tools/generate_assets.py` before packaging. It creates deterministic 16x16 pixel-art fallback PNGs for every missing texture path referenced by the block/item models and creates a mod icon if absent. This prevents missing-texture purple/black squares in the CI-built JAR. The generated art is deliberately simple fallback art, not finished bespoke art.
 
-- [ ] `assets/ancientrealms/textures/item/mythril_ingot.png`
-- [ ] `assets/ancientrealms/textures/item/mythril_sword.png`
-- [ ] `assets/ancientrealms/textures/item/adamantite_ingot.png`
-- [ ] `assets/ancientrealms/textures/item/dragonsteel_ingot.png`
-- [ ] `assets/ancientrealms/textures/item/soulstone.png`
-- [ ] `assets/ancientrealms/textures/item/void_crystal.png`
-- [ ] `assets/ancientrealms/textures/item/celestial_gold_ingot.png`
-- [ ] `assets/ancientrealms/textures/item/blood_crystal.png`
-- [ ] `assets/ancientrealms/textures/item/ancient_essence.png`
-- [ ] `assets/ancientrealms/textures/item/frost_core.png`
-- [ ] `assets/ancientrealms/textures/item/thunder_core.png`
-- [ ] `assets/ancientrealms/textures/item/infernal_shard.png`
-- [ ] `assets/ancientrealms/textures/item/dragon_heart.png`
-- [ ] `assets/ancientrealms/textures/item/crystal_dust.png`
-- [ ] `assets/ancientrealms/textures/item/eternal_fragment.png`
-- [ ] `assets/ancientrealms/textures/item/divine_essence.png`
-- [ ] `assets/ancientrealms/textures/item/ancient_dragon_scale.png`
-- [ ] `assets/ancientrealms/textures/item/world_core.png`
-- [ ] `assets/ancientrealms/textures/item/adamantite_sword.png`
-- [ ] `assets/ancientrealms/textures/item/dragonsteel_sword.png`
-- [ ] `assets/ancientrealms/textures/item/celestial_gold_sword.png`
-- [ ] `assets/ancientrealms/icon.png`
+## Custom art still recommended
+- [ ] Replace generated item textures with individually designed Mythril, Adamantite, Dragonsteel, Soulstone, Void, Celestial, Blood, Frost, Thunder, Infernal, Dragon Heart, Eternal and Divine art.
+- [ ] Replace generated ore textures with distinct stone/ore sprites for all seven ore types.
+- [ ] Create bespoke station block textures and model details.
+- [ ] Create a polished 128x128 or larger mod icon.
+- [ ] Add inventory icons and custom UI textures for the eight future station menus.
 
-## Ore and block visuals
-- [ ] Replace vanilla texture reuse on all seven ores with original block textures.
-- [ ] Add original textures for each station, nest, and any storage blocks added later.
-- [ ] Add complete block/item model and blockstate coverage for every registered block.
-
-## Confirmed implementation gaps (not art tasks)
+## Functional implementation gaps (not solved by fallback art)
 - [ ] Raw material forms, nuggets and appropriate storage blocks.
 - [ ] Five higher-tier ore dimension placements (only Mythril and Adamantite should generate in the Overworld).
 - [ ] Eight specified station block entities, menus/screens, custom recipes, timed server processing and progression gates.
 - [ ] Full tier equipment sets and progression advancements.
-- [ ] Kingdom NPCs, quest/event assets, dragon armor and breath visuals.
-- [ ] In-game client/server and multiplayer verification.
+- [ ] Kingdom NPCs, quest/event systems, diplomacy, raids and wars.
+- [ ] Dragon armor, visible breath projectiles, and full world-event systems.
+- [ ] In-game client/server startup, save/reload, new-world generation and multiplayer verification.
 
-Do not treat vanilla texture reuse or the remaining checklist as completed custom art.
+Generated placeholder art must not be represented as final custom art.

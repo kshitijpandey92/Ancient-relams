@@ -17,6 +17,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
+      - name: Generate pixel-art fallback assets
+        run: python tools/generate_assets.py
       - name: Generate world structures
         run: python tools/generate_royal_castle.py
       - name: Validate resources and structure templates
