@@ -45,6 +45,7 @@ public final class ModItems {
     public static final Item ANCIENT_DRAGON_SCALE = Registrar.item("ancient_dragon_scale", Item::new);
     public static final Item WORLD_CORE = Registrar.item("world_core", Item::new);
     public static final Item DRAGON_SADDLE = Registrar.item("dragon_saddle", Item::new);
+    public static final Item DRAGON_ARMOR = Registrar.item("dragon_armor", Item::new);
     public static final Item DRAGON_EGG = Registrar.item("dragon_egg", DragonEggItem::new);
     public static final Item FROST_DRAGON_EGG = Registrar.item("frost_dragon_egg", p -> new DragonEggItem(p, 1));
     public static final Item STORM_DRAGON_EGG = Registrar.item("storm_dragon_egg", p -> new DragonEggItem(p, 2));
@@ -87,6 +88,7 @@ public final class ModItems {
                 output.accept(ANCIENT_DRAGON_SCALE);
                 output.accept(WORLD_CORE);
                 output.accept(DRAGON_SADDLE);
+                output.accept(DRAGON_ARMOR);
                 output.accept(DRAGON_EGG);
                 output.accept(FROST_DRAGON_EGG);
                 output.accept(STORM_DRAGON_EGG);

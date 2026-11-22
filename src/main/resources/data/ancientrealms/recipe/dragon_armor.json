@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "SDS",
+    "DAD",
+    "SDS"
+  ],
+  "key": {
+    "S": {
+      "item": "ancientrealms:ancient_dragon_scale"
+    },
+    "D": {
+      "item": "ancientrealms:dragonsteel_ingot"
+    },
+    "A": {
+      "item": "ancientrealms:dragon_heart"
+    }
+  },
+  "result": {
+    "id": "ancientrealms:dragon_armor",
+    "count": 1
+  }
+}

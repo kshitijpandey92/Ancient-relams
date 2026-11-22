@@ -10,7 +10,7 @@ The mod is designed for both client and dedicated server. Install the same compa
 - Ember, Frost and Storm dragons with 3D models, textures, combat abilities, bonding, healing, saddles, flight and hatchling growth.
 - Rare automatically generated ruined keeps and a larger royal castle in newly generated overworld chunks, with towers, gates, battlements, furnishings and loot containers.
 - Eight themed crafting stations (currently vanilla crafting-table interfaces).
-- Scoreboard kingdoms with create, invite, join, leave and info commands.
+- Scoreboard kingdoms with create, invite, join, leave, info, leadership transfer, and persistent war/peace declarations. Invitation and leader markers are stored in the world scoreboard.
 - Recipes, loot tables, advancements, configuration and a creative tab.
 
 ## Dragon commands

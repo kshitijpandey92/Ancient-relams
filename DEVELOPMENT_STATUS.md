@@ -10,11 +10,11 @@ Minecraft Java 26.2, Fabric only, Java 25. Mod ID `ancientrealms`, package `com.
 
 ## Implemented features (runtime behavior still needs in-game verification)
 - Fabric main/client entrypoints, registrar helper, JSON configuration, weapon rarity enum and creative tab.
-- Dragon species Ember, Frost and Storm with models/textures, AI, elemental attacks, bonding, saddle/riding/flight, growth and egg nests.
+- Dragon species Ember, Frost and Storm with models/textures, AI, elemental attacks, bonding, saddle/riding/flight, growth and egg nests. Bonded dragons can equip persistent Dragon Armor, increasing their armor attribute from 14 to 30.
 - Seven ore block/resource definitions; only Mythril and Adamantite are registered for Overworld generation.
 - Ruined keep and royal castle structure resources; royal castle NBT is generated in CI.
 - Eight themed crafting station blocks, currently using vanilla crafting-table behavior.
-- Scoreboard-backed kingdom membership commands. Invitation and founder session state are in-memory and reset on restart.
+- Scoreboard-backed kingdom membership, invitations and leader identity are now stored as reserved entries in the persistent world scoreboard; leadership transfer and persistent war/peace declarations are available. This persistence approach still needs save/reload runtime testing.
 - Materials, swords, recipes, loot tables, advancements and config.
 
 ## 15-part completion checklist

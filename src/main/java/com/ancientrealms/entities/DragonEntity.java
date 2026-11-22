@@ -26,6 +26,7 @@ public class DragonEntity extends PathfinderMob {
  private int growthTicks = MAX_GROWTH_TICKS;
  private int elementalCooldown = 0;
  private boolean saddled = false;
+ private boolean dragonArmored = false;
  private java.util.UUID bondedPlayer = null;
 
  public DragonEntity(EntityType<? extends DragonEntity> type, Level level) {
@@ -72,6 +73,14 @@ public class DragonEntity extends PathfinderMob {
    heal(12.0F);
    if (!player.getAbilities().instabuild) held.shrink(1);
    player.sendSystemMessage(net.minecraft.network.chat.Component.literal("Your dragon enjoyed the treat and recovered health."));
+   return InteractionResult.SUCCESS;
+  }
+  if (!level().isClientSide() && bondedPlayer != null && bondedPlayer.equals(player.getUUID()) && !dragonArmored && held.is(ModItems.DRAGON_ARMOR)) {
+   dragonArmored = true;
+   var armorAttribute = getAttribute(Attributes.ARMOR);
+   if (armorAttribute != null) armorAttribute.setBaseValue(30.0);
+   if (!player.getAbilities().instabuild) held.shrink(1);
+   player.sendSystemMessage(net.minecraft.network.chat.Component.literal("Dragon armor equipped! Your dragon's armor is greatly increased."));
    return InteractionResult.SUCCESS;
   }
   if (!level().isClientSide() && bondedPlayer != null && bondedPlayer.equals(player.getUUID()) && !saddled && held.is(ModItems.DRAGON_SADDLE)) {
@@ -164,6 +173,7 @@ public class DragonEntity extends PathfinderMob {
  protected void addAdditionalSaveData(net.minecraft.world.level.storage.ValueOutput output) {
   super.addAdditionalSaveData(output);
   output.putBoolean("AncientRealmsSaddled", saddled);
+  output.putBoolean("AncientRealmsDragonArmored", dragonArmored);
   output.putInt("AncientRealmsGrowthTicks", growthTicks);
   if (bondedPlayer != null) output.putString("AncientRealmsBondedPlayer", bondedPlayer.toString());
  }
@@ -172,6 +182,9 @@ public class DragonEntity extends PathfinderMob {
  protected void readAdditionalSaveData(net.minecraft.world.level.storage.ValueInput input) {
   super.readAdditionalSaveData(input);
   saddled = input.getBooleanOr("AncientRealmsSaddled", false);
+  dragonArmored = input.getBooleanOr("AncientRealmsDragonArmored", false);
+  var armorAttribute = getAttribute(Attributes.ARMOR);
+  if (armorAttribute != null) armorAttribute.setBaseValue(dragonArmored ? 30.0 : 14.0);
   growthTicks = Math.max(0, Math.min(MAX_GROWTH_TICKS, input.getIntOr("AncientRealmsGrowthTicks", MAX_GROWTH_TICKS)));
   applyGrowthScale();
   String owner = input.getString("AncientRealmsBondedPlayer").orElse("");
