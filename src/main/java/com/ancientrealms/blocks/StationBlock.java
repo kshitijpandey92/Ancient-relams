@@ -71,7 +71,7 @@ public final class StationBlock extends Block {
             BlockPos pos, Player player, BlockHitResult hit) {
         Recipe recipe = recipe();
         player.sendSystemMessage(Component.literal(kindName() + ": place "
-                + recipe.inputCount() + " " + recipe.input().getName().getString()
+                + recipe.inputCount() + " " + new ItemStack(recipe.input()).getHoverName().getString()
                 + " in your hand and use it on this station to craft "
                 + new ItemStack(recipe.output()).getHoverName().getString() + "."));
         return InteractionResult.SUCCESS;
