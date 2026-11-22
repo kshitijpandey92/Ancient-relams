@@ -11,6 +11,8 @@ on:
   workflow_dispatch:
 jobs:
   build:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -31,14 +33,23 @@ jobs:
         with:
           gradle-version: '9.8.0'
       - name: Build mod
-        run: gradle build --no-daemon
+        run: |
+          if [ -x ./gradlew ]; then
+            ./gradlew build --no-daemon --console=plain
+          else
+            gradle build --no-daemon --console=plain
+          fi
       - name: Smoke-test dedicated server startup and datapack loading
         run: |
           mkdir -p run/server
           printf 'eula=true\n' > run/server/eula.txt
           printf 'eula=true\n' > run/eula.txt
           set +e
-          timeout --signal=INT --kill-after=20s 150s gradle runServer --no-daemon --console=plain
+          if [ -x ./gradlew ]; then
+            timeout --signal=INT --kill-after=20s 150s ./gradlew runServer --no-daemon --console=plain
+          else
+            timeout --signal=INT --kill-after=20s 150s gradle runServer --no-daemon --console=plain
+          fi
           server_status=$?
           set -e
           if [ "$server_status" -ne 124 ] && [ "$server_status" -ne 130 ]; then
@@ -57,9 +68,43 @@ jobs:
             exit 1
           fi
           echo "Dedicated server reached the ready state: $server_log"
+      - name: Smoke-test client startup and renderer registration
+        run: |
+          set +e
+          if [ -x ./gradlew ]; then
+            timeout --signal=INT --kill-after=20s 150s xvfb-run -a ./gradlew runClient --no-daemon --console=plain
+          else
+            timeout --signal=INT --kill-after=20s 150s xvfb-run -a gradle runClient --no-daemon --console=plain
+          fi
+          client_status=$?
+          set -e
+          if [ "$client_status" -ne 124 ] && [ "$client_status" -ne 130 ]; then
+            echo "Client exited before the smoke-test timeout (status $client_status)."
+            exit "$client_status"
+          fi
+          client_log="$(grep -RIl 'Ancient Realms dragon renderers initialized' run --include=latest.log | head -n 1)"
+          if [ -z "$client_log" ]; then
+            echo "Client did not log successful Ancient Realms renderer initialization."
+            find run -path '*/logs/latest.log' -print
+            exit 1
+          fi
+          echo "Client initialized the mod and dragon renderers: $client_log"
       - name: Upload mod jar
         if: success()
         uses: actions/upload-artifact@v4
         with:
           name: ancientrealms-fabric-26.2
           path: build/libs/*.jar
+      - name: Generate and commit the Gradle 9.8 wrapper
+        run: |
+          if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
+            gradle wrapper --gradle-version 9.8.0 --distribution-type bin
+            chmod +x gradlew
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add gradlew gradlew.bat gradle/wrapper/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.properties
+            if ! git diff --cached --quiet; then
+              git commit -m "Add Gradle 9.8 wrapper"
+              git push
+            fi
+          fi
