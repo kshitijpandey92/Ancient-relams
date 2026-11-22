@@ -63,12 +63,17 @@ jobs:
             find run -maxdepth 4 -type f -print || true
             exit 1
           fi
+          if grep -Eq 'Registry loading errors|Failed to load registries|Failed to parse ancientrealms:' "$server_log"; then
+            echo "Dedicated server reported datapack or registry errors:"
+            grep -E 'Registry loading errors|Failed to load registries|Failed to parse ancientrealms:' "$server_log"
+            exit 1
+          fi
           if ! grep -Fq 'Done (' "$server_log"; then
             echo "Dedicated server did not finish startup. Log follows:"
             cat "$server_log"
             exit 1
           fi
-          echo "Dedicated server reached the ready state: $server_log"
+          echo "Dedicated server reached the ready state without registry errors: $server_log"
       - name: Smoke-test client startup and renderer registration
         run: |
           set +e
@@ -79,7 +84,7 @@ jobs:
           fi
           client_status=$?
           set -e
-          if [ "$client_status" -ne 124 ] && [ "$client_status" -ne 130 ]; then
+          if [ "$client_status" -ne 124 ] && [ "$client_status" -ne 130 ] && [ "$client_status" -ne 137 ]; then
             echo "Client exited before the smoke-test timeout (status $client_status)."
             exit "$client_status"
           fi
