@@ -62,7 +62,7 @@ for path in sorted((DATA / "worldgen" / "template_pool").rglob("*.json")):
             continue
         try:
             raw = gzip.decompress(nbt_path.read_bytes())
-            if len(raw) < 4 or raw[:3] != b"\\x0a\\x00\\x00":
+            if len(raw) < 4 or raw[:3] != bytes((10, 0, 0)):
                 errors.append(f"{nbt_path}: not a valid gzip-compressed root NBT compound")
         except (OSError, EOFError) as exc:
             errors.append(f"{nbt_path}: cannot decompress structure NBT: {exc}")
