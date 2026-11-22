@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "ancientrealms:adamantite_ingot"
+    }
+  ],
+  "result": {
+    "id": "ancientrealms:adamantite_nugget",
+    "count": 9
+  }
+}
