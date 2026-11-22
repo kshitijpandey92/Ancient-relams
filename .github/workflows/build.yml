@@ -35,8 +35,8 @@ jobs:
       - name: Smoke-test dedicated server startup and datapack loading
         run: |
           mkdir -p run/server
-          printf 'eula=true\\n' > run/server/eula.txt
-          printf 'eula=true\\n' > run/eula.txt
+          printf 'eula=true\n' > run/server/eula.txt
+          printf 'eula=true\n' > run/eula.txt
           set +e
           timeout --signal=INT --kill-after=20s 150s gradle runServer --no-daemon --console=plain
           server_status=$?
