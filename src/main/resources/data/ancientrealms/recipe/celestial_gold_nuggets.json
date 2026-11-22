@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "ancientrealms:celestial_gold_ingot"
+    }
+  ],
+  "result": {
+    "id": "ancientrealms:celestial_gold_nugget",
+    "count": 9
+  }
+}
