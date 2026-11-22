@@ -166,7 +166,7 @@ public class DragonEntity extends PathfinderMob {
            && (bondedPlayer == null || !entity.getUUID().equals(bondedPlayer)))) {
     Vec3 toward = victim.position().subtract(position());
     if (toward.lengthSqr() > 144.0 || toward.normalize().dot(facing) < 0.62) continue;
-    if (!victim.hurt(damageSources().mobAttack(this), 12.0F)) continue;
+    victim.hurt(damageSources().mobAttack(this), 12.0F);
     if (getType() == DragonTypes.EMBER_DRAGON) {
      victim.igniteForSeconds(6.0F);
     } else if (getType() == DragonTypes.FROST_DRAGON) {
