@@ -8,7 +8,7 @@ The mod is designed for both client and dedicated server. Install the same compa
 ## Current features
 - Seven progression ore types and elemental dragon-egg nests in overworld world generation.
 - Ember, Frost and Storm dragons with 3D models, textures, combat abilities, bonding, healing, saddles, flight and hatchling growth.
-- Rare automatically generated ruined keeps in newly generated overworld chunks, with corner towers, a gate, battlements, an inner dais, a chest, a weaponsmith and a cleric.
+- Rare automatically generated ruined keeps and a larger royal castle in newly generated overworld chunks, with towers, gates, battlements, furnishings and loot containers.
 - Eight themed crafting stations (currently vanilla crafting-table interfaces).
 - Scoreboard kingdoms with create, invite, join, leave and info commands.
 - Recipes, loot tables, advancements, configuration and a creative tab.
@@ -21,7 +21,7 @@ The mod is designed for both client and dedicated server. Install the same compa
 ```
 
 ## Build
-GitHub Actions builds the mod with Java 25. See the [Actions page](https://github.com/kshitijpandey92/Ancient-relams/actions) for the latest build and artifact.
+GitHub Actions builds the mod with Java 25. The workflow generates the royal castle NBT template and validates all resource JSON and referenced structure templates before compiling. See the [Actions page](https://github.com/kshitijpandey92/Ancient-relams/actions) for the latest build and artifact.
 
 ## Status
-This is not yet the finished full-scope release. Kingdom persistence beyond scoreboard membership, NPC AI, quests, diplomacy, raids/wars, custom station processing, additional structures, final assets, and dedicated-server/multiplayer in-game verification remain outstanding. See [DEVELOPMENT_STATUS.md](DEVELOPMENT_STATUS.md), [DRAGONS.md](DRAGONS.md), [KINGDOMS.md](KINGDOMS.md) and [STATIONS.md](STATIONS.md).
+This is not yet the finished full-scope release. Persistent kingdom leadership/invitations, NPC AI, quests, diplomacy, raids/wars, custom station processing, additional settlement variety, final assets, and dedicated-server/multiplayer in-game verification remain outstanding. See [DEVELOPMENT_STATUS.md](DEVELOPMENT_STATUS.md), [DRAGONS.md](DRAGONS.md), [KINGDOMS.md](KINGDOMS.md) and [STATIONS.md](STATIONS.md).

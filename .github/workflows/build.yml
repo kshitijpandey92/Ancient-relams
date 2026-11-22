@@ -19,6 +19,8 @@ jobs:
           python-version: '3.x'
       - name: Generate world structures
         run: python tools/generate_royal_castle.py
+      - name: Validate resources and structure templates
+        run: python tools/validate_resources.py
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
