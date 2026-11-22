@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "ancientrealms:raw_mythril"
+  },
+  "result": {
+    "id": "ancientrealms:mythril_ingot"
+  },
+  "experience": 0.7,
+  "cookingtime": 200
+}
