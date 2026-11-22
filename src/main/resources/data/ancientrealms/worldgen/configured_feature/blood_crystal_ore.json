@@ -5,7 +5,9 @@
     "discard_chance_on_air_exposure": 0,
     "targets": [
       {
-        "state": "ancientrealms:blood_crystal_ore",
+        "state": {
+          "Name": "ancientrealms:blood_crystal_ore"
+        },
         "target": {
           "predicate_type": "minecraft:tag_match",
           "tag": "minecraft:base_stone_nether"
