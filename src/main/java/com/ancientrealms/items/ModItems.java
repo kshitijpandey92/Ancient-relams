@@ -59,7 +59,13 @@ public final class ModItems {
             .title(Component.translatable("itemGroup.ancientrealms.main"))
             .icon(() -> new ItemStack(MYTHRIL_SWORD))
             .displayItems((parameters, output) -> {
-                output.accept(MYTHRIL_INGOT);\n                output.accept(RAW_MYTHRIL);\n                output.accept(MYTHRIL_NUGGET);\n                output.accept(RAW_ADAMANTITE);\n                output.accept(ADAMANTITE_NUGGET);\n                output.accept(DRAGONSTEEL_NUGGET);\n                output.accept(CELESTIAL_GOLD_NUGGET);
+                output.accept(MYTHRIL_INGOT);
+                output.accept(RAW_MYTHRIL);
+                output.accept(MYTHRIL_NUGGET);
+                output.accept(RAW_ADAMANTITE);
+                output.accept(ADAMANTITE_NUGGET);
+                output.accept(DRAGONSTEEL_NUGGET);
+                output.accept(CELESTIAL_GOLD_NUGGET);
                 output.accept(MYTHRIL_SWORD);
                 output.accept(ADAMANTITE_SWORD);
                 output.accept(DRAGONSTEEL_SWORD);
