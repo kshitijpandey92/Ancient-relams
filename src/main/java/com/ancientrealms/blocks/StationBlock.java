@@ -53,7 +53,7 @@ public final class StationBlock extends Block {
         if (stack.getCount() < recipe.inputCount()) {
             if (level.isClientSide()) return InteractionResult.SUCCESS;
             player.sendSystemMessage(Component.literal(kindName() + " requires "
-                    + recipe.inputCount() + " " + recipe.input().getName().getString() + "."));
+                    + recipe.inputCount() + " " + new ItemStack(recipe.input()).getHoverName().getString() + "."));
             return InteractionResult.SUCCESS;
         }
         if (!level.isClientSide()) {
@@ -73,7 +73,7 @@ public final class StationBlock extends Block {
         player.sendSystemMessage(Component.literal(kindName() + ": place "
                 + recipe.inputCount() + " " + recipe.input().getName().getString()
                 + " in your hand and use it on this station to craft "
-                + recipe.output().getName().getString() + "."));
+                + new ItemStack(recipe.output()).getHoverName().getString() + "."));
         return InteractionResult.SUCCESS;
     }
 
