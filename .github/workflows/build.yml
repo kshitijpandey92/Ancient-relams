@@ -96,6 +96,8 @@ jobs:
           name: ancientrealms-fabric-26.2
           path: build/libs/*.jar
       - name: Generate and commit the Gradle 9.8 wrapper
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
             gradle wrapper --gradle-version 9.8.0 --distribution-type bin
