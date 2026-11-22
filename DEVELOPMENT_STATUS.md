@@ -17,7 +17,7 @@ Minecraft Java 26.2, Fabric only, Java 25. Mod ID `ancientrealms`, package `com.
 - Eight themed crafting station blocks, still using vanilla crafting-table behavior.
 - Scoreboard kingdoms with persistent invitation/leader/war markers, leadership transfer, and war/peace declaration commands.
 - Three advancement-based dragon-hunt quests with kill criteria and experience rewards.
-- Seventeen core material items, several raw forms/nuggets, swords, recipes, loot tables, fallback textures and translations.
+- Seventeen core material items, several raw forms/nuggets, swords, recipes, loot tables, fallback textures and translations.\n- Reversible storage blocks for all 17 core materials; blockstates, models, loot tables and 34 conversion recipes are generated during the build.
 
 ## 15-part completion checklist
 - [x] 1. Existing repository scaffold and Fabric metadata.

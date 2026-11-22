@@ -70,5 +70,22 @@
   "advancements.ancientrealms.dragon_hunter_frost.title": "A Cold Victory",
   "advancements.ancientrealms.dragon_hunter_frost.description": "Defeat a Frost Dragon.",
   "advancements.ancientrealms.dragon_hunter_storm.title": "Eye of the Storm",
-  "advancements.ancientrealms.dragon_hunter_storm.description": "Defeat a Storm Dragon."
+  "advancements.ancientrealms.dragon_hunter_storm.description": "Defeat a Storm Dragon.",
+  "block.ancientrealms.mythril_block": "Block of Mythril",
+  "block.ancientrealms.adamantite_block": "Block of Adamantite",
+  "block.ancientrealms.dragonsteel_block": "Block of Dragonsteel",
+  "block.ancientrealms.soulstone_block": "Block of Soulstone",
+  "block.ancientrealms.void_crystal_block": "Block of Void Crystal",
+  "block.ancientrealms.celestial_gold_block": "Block of Celestial Gold",
+  "block.ancientrealms.blood_crystal_block": "Block of Blood Crystal",
+  "block.ancientrealms.ancient_essence_block": "Block of Ancient Essence",
+  "block.ancientrealms.frost_core_block": "Block of Frost Core",
+  "block.ancientrealms.thunder_core_block": "Block of Thunder Core",
+  "block.ancientrealms.infernal_shard_block": "Block of Infernal Shard",
+  "block.ancientrealms.dragon_heart_block": "Block of Dragon Hearts",
+  "block.ancientrealms.crystal_dust_block": "Block of Crystal Dust",
+  "block.ancientrealms.eternal_fragment_block": "Block of Eternal Fragments",
+  "block.ancientrealms.divine_essence_block": "Block of Divine Essence",
+  "block.ancientrealms.ancient_dragon_scale_block": "Block of Ancient Dragon Scales",
+  "block.ancientrealms.world_core_block": "Block of World Cores"
 }

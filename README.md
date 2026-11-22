@@ -11,7 +11,7 @@ The mod is designed for both client and dedicated server. Install the same compa
 - Rare automatically generated ruined keeps and a larger royal castle in newly generated overworld chunks, with towers, gates, battlements, furnishings and loot containers.
 - Eight themed crafting stations (currently vanilla crafting-table interfaces).
 - Scoreboard kingdoms with create, invite, join, leave, info, leadership transfer, and persistent war/peace declarations. Invitation and leader markers are stored in the world scoreboard.
-- Recipes, loot tables, advancements, configuration and a creative tab.
+- Reversible 9-to-1 storage blocks for all 17 core progression materials, with block models, item models, loot tables and recipes generated into the distributable build.\n- Recipes, loot tables, advancements, configuration and a creative tab.
 
 ## Dragon commands
 ```

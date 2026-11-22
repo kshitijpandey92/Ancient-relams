@@ -66,7 +66,69 @@ def png(path, name):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes(data)
 
+
+# Storage blocks and their reversible nine-item recipes are generated from this
+# single manifest so every material has matching blockstate, models, loot and
+# recipe data. The generated files are included in the distributable JAR.
+STORAGE_MATERIALS = [
+    ("mythril", "mythril_ingot"),
+    ("adamantite", "adamantite_ingot"),
+    ("dragonsteel", "dragonsteel_ingot"),
+    ("soulstone", "soulstone"),
+    ("void_crystal", "void_crystal"),
+    ("celestial_gold", "celestial_gold_ingot"),
+    ("blood_crystal", "blood_crystal"),
+    ("ancient_essence", "ancient_essence"),
+    ("frost_core", "frost_core"),
+    ("thunder_core", "thunder_core"),
+    ("infernal_shard", "infernal_shard"),
+    ("dragon_heart", "dragon_heart"),
+    ("crystal_dust", "crystal_dust"),
+    ("eternal_fragment", "eternal_fragment"),
+    ("divine_essence", "divine_essence"),
+    ("ancient_dragon_scale", "ancient_dragon_scale"),
+    ("world_core", "world_core"),
+]
+
+def write_json(path, value):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(value, indent=2) + "\\n", encoding="utf-8")
+
+def generate_storage_blocks():
+    resources = ROOT / "src/main/resources"
+    for material, ingredient in STORAGE_MATERIALS:
+        block = material + "_block"
+        write_json(ASSETS / "blockstates" / (block + ".json"), {
+            "variants": {"": {"model": "ancientrealms:block/" + block}}
+        })
+        write_json(MODELS / "block" / (block + ".json"), {
+            "parent": "minecraft:block/cube_all",
+            "textures": {"all": "ancientrealms:block/" + block}
+        })
+        write_json(MODELS / "item" / (block + ".json"), {
+            "parent": "ancientrealms:block/" + block
+        })
+        write_json(resources / "data/ancientrealms/loot_table/blocks" / (block + ".json"), {
+            "type": "minecraft:block",
+            "pools": [{"rolls": 1, "entries": [{"type": "minecraft:item", "name": "ancientrealms:" + block}]}]
+        })
+        write_json(resources / "data/ancientrealms/recipe" / (block + ".json"), {
+            "type": "minecraft:crafting_shaped",
+            "category": "building",
+            "pattern": ["XXX", "XXX", "XXX"],
+            "key": {"X": {"item": "ancientrealms:" + ingredient}},
+            "result": {"id": "ancientrealms:" + block, "count": 1}
+        })
+        write_json(resources / "data/ancientrealms/recipe" / (material + "_from_block.json"), {
+            "type": "minecraft:crafting_shapeless",
+            "category": "misc",
+            "ingredients": [{"item": "ancientrealms:" + block}],
+            "result": {"id": "ancientrealms:" + ingredient, "count": 9}
+        })
+
+
 def main():
+    generate_storage_blocks()
     made = []
     for model_file in MODELS.rglob("*.json"):
         model = json.loads(model_file.read_text(encoding="utf-8"))
