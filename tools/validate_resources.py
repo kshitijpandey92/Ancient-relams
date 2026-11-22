@@ -67,6 +67,34 @@ for path in sorted((DATA / "worldgen" / "template_pool").rglob("*.json")):
         except (OSError, EOFError) as exc:
             errors.append(f"{nbt_path}: cannot decompress structure NBT: {exc}")
 
+
+# Generated material storage blocks must have all of their gameplay resources.
+storage_materials = [
+    "mythril", "adamantite", "dragonsteel", "soulstone", "void_crystal",
+    "celestial_gold", "blood_crystal", "ancient_essence", "frost_core",
+    "thunder_core", "infernal_shard", "dragon_heart", "crystal_dust",
+    "eternal_fragment", "divine_essence", "ancient_dragon_scale", "world_core",
+]
+pickaxe_tag = parsed.get(DATA.parent / "minecraft" / "tags" / "block" / "mineable" / "pickaxe.json")
+iron_tag = parsed.get(DATA.parent / "minecraft" / "tags" / "block" / "needs_iron_tool.json")
+for material in storage_materials:
+    block = material + "_block"
+    required = [
+        ROOT / "assets/ancientrealms/blockstates" / (block + ".json"),
+        ROOT / "assets/ancientrealms/models/block" / (block + ".json"),
+        ROOT / "assets/ancientrealms/models/item" / (block + ".json"),
+        DATA / "loot_table/blocks" / (block + ".json"),
+        DATA / "recipe" / (block + ".json"),
+        DATA / "recipe" / (material + "_from_block.json"),
+    ]
+    for resource in required:
+        if not resource.is_file():
+            errors.append(f"storage block {block}: missing {resource}")
+    if isinstance(pickaxe_tag, dict) and "ancientrealms:" + block not in pickaxe_tag.get("values", []):
+        errors.append(f"storage block {block}: missing minecraft:mineable/pickaxe tag")
+    if isinstance(iron_tag, dict) and "ancientrealms:" + block not in iron_tag.get("values", []):
+        errors.append(f"storage block {block}: missing minecraft:needs_iron_tool tag")
+
 if errors:
     print("Ancient Realms resource validation FAILED:")
     for error in errors:

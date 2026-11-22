@@ -127,6 +127,24 @@ def generate_storage_blocks():
         })
 
 
+    # Register all generated mineral and crystal blocks as pickaxe-mineable.
+    block_ids = [material + "_block" for material, _ in STORAGE_MATERIALS]
+    block_ids += [
+        "mythril_ore", "adamantite_ore", "dragonsteel_ore",
+        "soulstone_ore", "void_crystal_ore", "celestial_gold_ore",
+        "blood_crystal_ore",
+    ]
+    tags = resources / "data/minecraft/tags/block"
+    write_json(tags / "mineable/pickaxe.json", {
+        "replace": False,
+        "values": ["ancientrealms:" + block for block in block_ids]
+    })
+    write_json(tags / "needs_iron_tool.json", {
+        "replace": False,
+        "values": ["ancientrealms:" + block for block in block_ids]
+    })
+
+
 def main():
     generate_storage_blocks()
     made = []
