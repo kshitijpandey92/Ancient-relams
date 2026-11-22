@@ -10,7 +10,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.scores.PlayerTeam;
 import net.minecraft.world.scores.Scoreboard;
 
-import java.util.Set;
 import java.util.UUID;
 
 public final class KingdomCommands {
@@ -222,8 +221,7 @@ public final class KingdomCommands {
             return 0;
         }
         String role = isOwner(team, player.getUUID()) ? "Leader" : "Member";
-        Set<String> entries = team.getPlayers();
-        long wars = entries.stream().filter(e -> e.startsWith(WAR_PREFIX)).count();
+        long wars = team.getPlayers().stream().filter(e -> e.startsWith(WAR_PREFIX)).count();
         player.sendSystemMessage(Component.literal("Kingdom: " + team.getName() + " | Role: " + role
             + " | Members: " + realMemberCount(team) + " | Active wars: " + wars)
             .withStyle(ChatFormatting.GOLD));
