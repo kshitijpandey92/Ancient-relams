@@ -18,6 +18,12 @@ import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 
 public final class ModItems {
     public static final Item MYTHRIL_INGOT = Registrar.item("mythril_ingot", Item::new);
+    public static final Item RAW_MYTHRIL = Registrar.item("raw_mythril", Item::new);
+    public static final Item MYTHRIL_NUGGET = Registrar.item("mythril_nugget", Item::new);
+    public static final Item RAW_ADAMANTITE = Registrar.item("raw_adamantite", Item::new);
+    public static final Item ADAMANTITE_NUGGET = Registrar.item("adamantite_nugget", Item::new);
+    public static final Item DRAGONSTEEL_NUGGET = Registrar.item("dragonsteel_nugget", Item::new);
+    public static final Item CELESTIAL_GOLD_NUGGET = Registrar.item("celestial_gold_nugget", Item::new);
     public static final Item MYTHRIL_SWORD = Registrar.item("mythril_sword", Item::new);
     public static final Item ADAMANTITE_SWORD = Registrar.item("adamantite_sword", Item::new);
     public static final Item DRAGONSTEEL_SWORD = Registrar.item("dragonsteel_sword", Item::new);
@@ -53,7 +59,7 @@ public final class ModItems {
             .title(Component.translatable("itemGroup.ancientrealms.main"))
             .icon(() -> new ItemStack(MYTHRIL_SWORD))
             .displayItems((parameters, output) -> {
-                output.accept(MYTHRIL_INGOT);
+                output.accept(MYTHRIL_INGOT);\n                output.accept(RAW_MYTHRIL);\n                output.accept(MYTHRIL_NUGGET);\n                output.accept(RAW_ADAMANTITE);\n                output.accept(ADAMANTITE_NUGGET);\n                output.accept(DRAGONSTEEL_NUGGET);\n                output.accept(CELESTIAL_GOLD_NUGGET);
                 output.accept(MYTHRIL_SWORD);
                 output.accept(ADAMANTITE_SWORD);
                 output.accept(DRAGONSTEEL_SWORD);
