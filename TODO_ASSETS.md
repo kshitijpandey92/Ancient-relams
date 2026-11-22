@@ -1,7 +1,7 @@
 # Art and Asset Checklist
 
-## Required item textures
-The item models are wired, but these custom PNGs are still missing. Until they are supplied, Minecraft will render missing-texture placeholders.
+## Missing custom item textures
+The repository currently has dragon entity textures, but the custom item textures below are still absent. Until supplied, item models that reference these paths will show missing-texture placeholders.
 
 - [ ] `assets/ancientrealms/textures/item/mythril_ingot.png`
 - [ ] `assets/ancientrealms/textures/item/mythril_sword.png`
@@ -24,22 +24,19 @@ The item models are wired, but these custom PNGs are still missing. Until they a
 - [ ] `assets/ancientrealms/textures/item/adamantite_sword.png`
 - [ ] `assets/ancientrealms/textures/item/dragonsteel_sword.png`
 - [ ] `assets/ancientrealms/textures/item/celestial_gold_sword.png`
-- [ ] `assets/ancientrealms/icon.png` (mod icon)
+- [ ] `assets/ancientrealms/icon.png`
 
-## Ore visuals
-Seven ore block models currently reuse vanilla block textures so they are visible without bundling placeholder art. Replace them with original art when ready:
-- [ ] Mythril Ore
-- [ ] Adamantite Ore
-- [ ] Dragonsteel Ore
-- [ ] Soulstone Ore
-- [ ] Void Crystal Ore
-- [ ] Celestial Gold Ore
-- [ ] Blood Crystal Ore
+## Ore and block visuals
+- [ ] Replace vanilla texture reuse on all seven ores with original block textures.
+- [ ] Add original textures for each station, nest, and any storage blocks added later.
+- [ ] Add complete block/item model and blockstate coverage for every registered block.
 
-## Not yet implemented
-- [ ] Ore world generation and biome placement.
-- [ ] Eight functional crafting stations, including block entities, menus/screens, server-side recipe processing, and station-specific progression gates.
-- [ ] Full tier equipment sets and the complete progression tree.
-- [ ] Dragon entities, kingdom/world events, and their assets.
+## Confirmed implementation gaps (not art tasks)
+- [ ] Raw material forms, nuggets and appropriate storage blocks.
+- [ ] Five higher-tier ore dimension placements (only Mythril and Adamantite should generate in the Overworld).
+- [ ] Eight specified station block entities, menus/screens, custom recipes, timed server processing and progression gates.
+- [ ] Full tier equipment sets and progression advancements.
+- [ ] Kingdom NPCs, quest/event assets, dragon armor and breath visuals.
+- [ ] In-game client/server and multiplayer verification.
 
-Do not treat vanilla texture reuse as final art or the remaining feature checklist as completed.
+Do not treat vanilla texture reuse or the remaining checklist as completed custom art.

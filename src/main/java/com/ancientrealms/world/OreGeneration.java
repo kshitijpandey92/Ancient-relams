@@ -8,11 +8,13 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
+/**
+ * Registers only features intended for the Overworld.
+ * Higher-tier ores remain data-defined but are deliberately not placed until
+ * their future dimensions and biome selectors are implemented.
+ */
 public final class OreGeneration {
-    private static final String[] ORES = {
-        "mythril", "adamantite", "dragonsteel", "soulstone",
-        "void_crystal", "celestial_gold", "blood_crystal"
-    };
+    private static final String[] OVERWORLD_ORES = {"mythril", "adamantite"};
 
     private OreGeneration() {}
 
@@ -28,7 +30,7 @@ public final class OreGeneration {
             );
         }
 
-        for (String ore : ORES) {
+        for (String ore : OVERWORLD_ORES) {
             ResourceKey<PlacedFeature> key = ResourceKey.create(
                 Registries.PLACED_FEATURE, Registrar.id(ore + "_ore")
             );
