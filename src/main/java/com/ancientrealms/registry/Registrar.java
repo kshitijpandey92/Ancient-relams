@@ -8,7 +8,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.CraftingTableBlock;
+import com.ancientrealms.blocks.StationBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import java.util.function.Function;
 public final class Registrar {
@@ -40,10 +40,10 @@ public final class Registrar {
   return block;
  }
 
- public static Block station(String path) {
+ public static Block station(String path, StationBlock.Kind kind) {
   Identifier id = id(path);
   ResourceKey<Block> blockKey = ResourceKey.create(Registries.BLOCK, id);
-  Block block = new CraftingTableBlock(BlockBehaviour.Properties.of().strength(3.5f).setId(blockKey));
+  Block block = new StationBlock(BlockBehaviour.Properties.of().strength(3.5f).requiresCorrectToolForDrops().setId(blockKey), kind);
   Registry.register(BuiltInRegistries.BLOCK, id, block);
   ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, id);
   BlockItem item = new BlockItem(block, new Item.Properties().useBlockDescriptionPrefix().setId(itemKey));
