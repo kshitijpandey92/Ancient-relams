@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "NNN",
+    "NNN",
+    "NNN"
+  ],
+  "key": {
+    "N": {
+      "item": "ancientrealms:dragonsteel_nugget"
+    }
+  },
+  "result": {
+    "id": "ancientrealms:dragonsteel_ingot",
+    "count": 1
+  }
+}
