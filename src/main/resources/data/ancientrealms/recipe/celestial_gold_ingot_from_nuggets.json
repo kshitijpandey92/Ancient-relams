@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "NNN",
+    "NNN",
+    "NNN"
+  ],
+  "key": {
+    "N": {
+      "item": "ancientrealms:celestial_gold_nugget"
+    }
+  },
+  "result": {
+    "id": "ancientrealms:celestial_gold_ingot",
+    "count": 1
+  }
+}
