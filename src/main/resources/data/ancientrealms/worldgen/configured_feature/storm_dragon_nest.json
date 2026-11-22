@@ -1,20 +1,12 @@
 {
-  "type": "minecraft:random_patch",
+  "type": "minecraft:simple_block",
   "config": {
-    "tries": 8,
-    "xz_spread": 5,
-    "y_spread": 2,
-    "feature": {
-      "feature": "minecraft:simple_block",
-      "config": {
-        "to_place": {
-          "type": "minecraft:simple_state_provider",
-          "state": {
-            "Name": "ancientrealms:dragon_egg_nest",
-            "Properties": {
-              "species": "2"
-            }
-          }
+    "to_place": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "ancientrealms:dragon_egg_nest",
+        "Properties": {
+          "species": "2"
         }
       }
     }
