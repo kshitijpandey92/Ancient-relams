@@ -18,6 +18,8 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.phys.Vec3;
 
@@ -151,20 +153,29 @@ public class DragonEntity extends PathfinderMob {
   if (elementalCooldown > 0) elementalCooldown--;
   LivingEntity target = getTarget();
   if (target != null && bondedPlayer != null && target.getUUID().equals(bondedPlayer)) { setTarget(null); target = null; }
-  if (!level().isClientSide() && target != null && distanceToSqr(target) < 225.0 && elementalCooldown == 0) {
-   if (getType() == DragonTypes.EMBER_DRAGON) {
-    target.hurt(damageSources().mobAttack(this), 8.0F);
-    target.igniteForSeconds(6.0F);
-   } else if (getType() == DragonTypes.FROST_DRAGON) {
-    target.hurt(damageSources().mobAttack(this), 8.0F);
-    target.setTicksFrozen(Math.min(300, target.getTicksFrozen() + 100));
-   } else {
-    double dx = target.getX() - getX();
-    double dz = target.getZ() - getZ();
-    target.hurt(damageSources().mobAttack(this), 8.0F);
-    target.push(dx * 0.12, 0.8, dz * 0.12);
+  if (!level().isClientSide() && target != null && distanceToSqr(target) < 256.0 && elementalCooldown == 0) {
+   Vec3 facing = getLookAngle();
+   var particle = getType() == DragonTypes.EMBER_DRAGON ? ParticleTypes.SMALL_FLAME
+       : getType() == DragonTypes.FROST_DRAGON ? ParticleTypes.SNOWFLAKE : ParticleTypes.ELECTRIC_SPARK;
+   ServerLevel server = (ServerLevel) level();
+   server.sendParticles(particle, getX() + facing.x * 2.2, getY() + 1.5,
+       getZ() + facing.z * 2.2, 36, 0.55, 0.45, 0.55, 0.035);
+   for (LivingEntity victim : level().getEntitiesOfClass(LivingEntity.class,
+       getBoundingBox().inflate(12.0), entity -> entity.isAlive() && entity != this
+           && entity != getControllingPassenger()
+           && (bondedPlayer == null || !entity.getUUID().equals(bondedPlayer)))) {
+    Vec3 toward = victim.position().subtract(position());
+    if (toward.lengthSqr() > 144.0 || toward.normalize().dot(facing) < 0.62) continue;
+    if (!victim.hurt(damageSources().mobAttack(this), 12.0F)) continue;
+    if (getType() == DragonTypes.EMBER_DRAGON) {
+     victim.igniteForSeconds(6.0F);
+    } else if (getType() == DragonTypes.FROST_DRAGON) {
+     victim.setTicksFrozen(Math.min(300, victim.getTicksFrozen() + 120));
+    } else {
+     victim.push(facing.x * 1.15, 0.55, facing.z * 1.15);
+    }
    }
-   elementalCooldown = 100;
+   elementalCooldown = 160;
   }
  }
 

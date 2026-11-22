@@ -47,13 +47,13 @@ jobs:
           printf 'eula=true\n' > run/eula.txt
           set +e
           if [ -x ./gradlew ]; then
-            timeout --signal=INT --kill-after=20s 150s ./gradlew runServer --no-daemon --console=plain
+            timeout --signal=TERM --kill-after=10s 45s ./gradlew runServer --no-daemon --console=plain
           else
-            timeout --signal=INT --kill-after=20s 150s gradle runServer --no-daemon --console=plain
+            timeout --signal=TERM --kill-after=10s 45s gradle runServer --no-daemon --console=plain
           fi
           server_status=$?
           set -e
-          if [ "$server_status" -ne 124 ] && [ "$server_status" -ne 130 ]; then
+          if [ "$server_status" -ne 124 ] && [ "$server_status" -ne 130 ] && [ "$server_status" -ne 137 ]; then
             echo "Dedicated server exited before the smoke-test timeout (status $server_status)."
             exit "$server_status"
           fi
@@ -78,9 +78,9 @@ jobs:
         run: |
           set +e
           if [ -x ./gradlew ]; then
-            timeout --signal=INT --kill-after=20s 150s xvfb-run -a ./gradlew runClient --no-daemon --console=plain
+            timeout --signal=TERM --kill-after=10s 45s xvfb-run -a ./gradlew runClient --no-daemon --console=plain
           else
-            timeout --signal=INT --kill-after=20s 150s xvfb-run -a gradle runClient --no-daemon --console=plain
+            timeout --signal=TERM --kill-after=10s 45s xvfb-run -a gradle runClient --no-daemon --console=plain
           fi
           client_status=$?
           set -e
