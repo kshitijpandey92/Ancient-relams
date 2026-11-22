@@ -57,5 +57,11 @@
   "advancements.ancientrealms.kingdom_founder.title": "A Realm of Your Own",
   "advancements.ancientrealms.kingdom_founder.description": "Craft the sigil of an Ancient Realms kingdom.",
   "item.ancientrealms.frost_dragon_egg": "Frost Dragon Egg",
-  "item.ancientrealms.storm_dragon_egg": "Storm Dragon Egg"
+  "item.ancientrealms.storm_dragon_egg": "Storm Dragon Egg",
+  "item.ancientrealms.raw_mythril": "Raw Mythril",
+  "item.ancientrealms.mythril_nugget": "Mythril Nugget",
+  "item.ancientrealms.raw_adamantite": "Raw Adamantite",
+  "item.ancientrealms.adamantite_nugget": "Adamantite Nugget",
+  "item.ancientrealms.dragonsteel_nugget": "Dragonsteel Nugget",
+  "item.ancientrealms.celestial_gold_nugget": "Celestial Gold Nugget"
 }
