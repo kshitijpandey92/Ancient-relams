@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "ancientrealms:dragonsteel_ingot"
+    }
+  ],
+  "result": {
+    "id": "ancientrealms:dragonsteel_nugget",
+    "count": 9
+  }
+}
