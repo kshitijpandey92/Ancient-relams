@@ -64,5 +64,11 @@
   "item.ancientrealms.adamantite_nugget": "Adamantite Nugget",
   "item.ancientrealms.dragonsteel_nugget": "Dragonsteel Nugget",
   "item.ancientrealms.celestial_gold_nugget": "Celestial Gold Nugget",
-  "item.ancientrealms.dragon_armor": "Dragon Armor"
+  "item.ancientrealms.dragon_armor": "Dragon Armor",
+  "advancements.ancientrealms.dragon_hunter_ember.title": "The Ember Hunt",
+  "advancements.ancientrealms.dragon_hunter_ember.description": "Defeat an Ember Dragon.",
+  "advancements.ancientrealms.dragon_hunter_frost.title": "A Cold Victory",
+  "advancements.ancientrealms.dragon_hunter_frost.description": "Defeat a Frost Dragon.",
+  "advancements.ancientrealms.dragon_hunter_storm.title": "Eye of the Storm",
+  "advancements.ancientrealms.dragon_hunter_storm.description": "Defeat a Storm Dragon."
 }
